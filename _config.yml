@@ -4,7 +4,7 @@ subtitle:
 email: busy.joj@gmail.com
 description: Slow and steady win the game.
 baseurl: "/busy-joj" # the subpath of your site, e.g. /blog
-url: "https://busy-joj.github.io/" # the base hostname & protocol for your site
+url: "https://busy-joj.github.io" # the base hostname & protocol for your site
 author: 
 github_address: https://github.com/busy-joj
 city: Republic of Korea
