@@ -95,10 +95,10 @@ code {
 	/*position: fixed;*/
 	display: flex;
 	flex-flow: column nowrap;
-	flex: 0 0 220px;
+	flex: 0 0 260px;
 	padding: 15px;
 	z-index: 1;
-	background-color: #222;
+	background-color: #7ea386;
 	color: #fff;
 }
 
