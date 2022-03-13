@@ -142,7 +142,7 @@ a.nav-item {
 	font-size: 120%;
 	font-family: "Noto Sans";
 	text-transform: capitalize;
-	color: #aaa;
+	color: #fff;
 }
 
 a.nav-item:hover { color: #777; }
