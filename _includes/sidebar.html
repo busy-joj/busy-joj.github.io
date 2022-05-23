@@ -13,43 +13,43 @@
 
 <div class="sidebar-item sidebar-nav">
 	<ul class="nav">
-      <li class="nav-title">Pages</li>
-	  <li>
-	  	<a class="nav-item" href="/">Articles</a>
-	  </li>
-	  {% assign pages_list = site.pages %}
-	  {% for node in pages_list %}
-	    {% if node.title != null %}
-	      {% if node.layout == "page" %}
-	        <li>
-	        	<a class="nav-item" href="{{ node.url }}">
-	            	{{ node.title }}
-	            </a>
-	        </li>
-	      {% endif %}
-	    {% endif %}
-	  {% endfor %}
+        <li class="nav-title">Pages</li>
+		<li>
+		<a class="nav-item" href="/">Articles</a>
+		</li>
+		{% assign pages_list = site.pages %}
+		{% for node in pages_list %}
+		{% if node.title != null %}
+			{% if node.layout == "page" %}
+			<li>
+				<a class="nav-item" href="{{ node.url }}">
+					{{ node.title }}
+				</a>
+			</li>
+			{% endif %}
+		{% endif %}
+		{% endfor %}
 	</ul>
 </div>
 
 <div class="sidebar-item sidebar-nav">
-  	<ul class="nav">
-			<li class="nav-title">Categories</li>
-	    {% for category in site.categories %}
-	    <li>
-	    	<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}">
+	<ul class="nav">
+		<li class="nav-title">Categories</li>
+		{% for category in site.categories %}
+		<li>
+			<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}">
 				<span class="name">{{ category | first }}</span>
 				<span class="badge">{{ category | last | size }}</span>
-	    	</a>
- 		</li>
-	    {% endfor %}
-	  </nav>
+			</a>
+		</li>
+		{% endfor %}
+	</nav>
 	</ul>
 </div>
 
 <div class="sidebar-item sidebar-footer">
 	<p class="nav-title">about me</p>	
-	<i class="fa-solid fa-location-dot">Republic of Korea</i>	
-	<i class="fa-solid fa-envelope"><a href="https://github.com/busy-joj">busy.joj@gmail.com</a></i>
-	<i class="fa-brands fa-github"><a href="https://github.com/busy-joj">https://github.com/busy-joj</a></i>
+	<span><i class="fa-solid fa-location-dot"></i>Republic of Korea</span>
+	<a href="https://github.com/busy-joj"><i class="fa-solid fa-envelope"></i><span>busy.joj@gmail.com</span></a>
+	<a href="https://github.com/busy-joj"><i class="fa-brands fa-github"></i><span>https://github.com/busy-joj</span></a>
 </div>

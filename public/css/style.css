@@ -95,7 +95,7 @@ code {
 	/*position: fixed;*/
 	display: flex;
 	flex-flow: column nowrap;
-	flex: 0 0 260px;
+	flex: 0 0 320px;
 	padding: 15px;
 	z-index: 1;
 	background-color: #7ea386;
@@ -159,6 +159,8 @@ a.nav-item:hover { color: #777; }
 	font-size: 110%;
 	color: #333;
 }
+
+.post-content{padding:0 50px;}
 
 #contact-list li .fa,
 article .share .btn {
@@ -294,10 +296,22 @@ footer {
 	line-height: 1.5;
 }
 
-.sidebar-footer a {
-	color: #ccc;
+.sidebar-footer p + span {
+	display: block;
+	font-size: 1.3em;
 }
 
+.sidebar-footer a {
+	color: #fff;
+	display: block;
+	font-size: 1.3em;
+}
+
+.sidebar-footer i {
+	margin-right:5px;
+}
+
+i.fa-solid.fa-location-dot{margin:0 6px 0px 2px;}
 
 @media (max-width: 576px) {
 	article {
