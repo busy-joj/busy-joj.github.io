@@ -323,7 +323,7 @@ i.fa-solid.fa-location-dot{margin:0 6px 0px 2px;}
 		padding: 0px;
 	}
 	.container {
-	    flex-direction: column;
+		flex-direction: column;
 	}
 
 	.sidebar {
@@ -350,4 +350,7 @@ i.fa-solid.fa-location-dot{margin:0 6px 0px 2px;}
 		visibility: hidden;
 		display: none;
 	}
+	.post-content{padding:0;}
+	.post-list{padding:0 0 0 25px;}
+	.post-link{margin-left:0px;}
 }
