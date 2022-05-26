@@ -35,7 +35,13 @@
 <div class="sidebar-item sidebar-nav">
 	<ul class="nav">
 		<li class="nav-title">Categories</li>
+		<li>
+			<a class="nav-item" href="/">
+				<span class="name">All articles</span>
+			</a>
+		</li>
 		{% for category in site.categories %}
+		
 		<li>
 			<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}">
 				<span class="name">{{ category | first }}</span>

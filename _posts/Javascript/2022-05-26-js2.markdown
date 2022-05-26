@@ -1,0 +1,77 @@
+---
+layout: post
+title: 자바스크립트 문법(1) - 조건문(if,swich문,삼항연산자)
+date: 2022-05-26 21:04:10 +0900
+category: Javascript
+---
+ 
+## <span style="color:#97cab3;font-weight:bold">조건문</span>
+조건식의 값이 참인지, 거짓인지에 따라 소스코드의 흐름을 제어한다.  
+(빨간 휴지줄까~? 파란휴지줄까~?ㅋㅋㅋㅋㅋㅋㅋ헤헤)
+<br/>
+
+1. <span style="color:#febc68;font-weight:bold">if문 ( = 만약에 주어진 조건이 참이면/거짓이면~)  </span> 
+   ```javascript  
+      let a = 1;
+      if(a < 10){
+         console.log("안녕");
+      }
+   ```  
+   <span style="color:#f27c88;"> * 0, null, undefined와 같은 데이터들은 'false'값을 반환하는 데이터이다.* </span>  
+
+   -> else문 ( = if문의 조건에 성립되지 않는 경우 실행되는 코드)  
+   ```javascript  
+      let a = 1;
+      if(a < 10){
+         console.log("a는 10미만입니다.");
+      }else{
+         console.log("a는 10미만이 아닙니다.");
+      }
+   ``` 
+
+   -> else if문 ( = 두가지 이상의 조건을 정할 수 있으며, 정해 놓은 조건에 만족하지 않을 때 실행되는 코드)  
+   ```javascript  
+      let a = 1;
+      if(조건1){
+         console.log("a는 10미만입니다.");
+      }else if(조건2){
+         console.log("a는 10미만이 아닙니다.");
+      }else{
+         console.log("둘 다 아닙니다.");
+      }
+   ```   
+   <br/>
+
+
+1. <span style="color:#febc68;font-weight:bold">switch문 </span>  
+ 다양한 값들 중 일치하는 데이터를 찾아 코드를 실행할 때 사용한다.  
+ 일치하는 데이터를 찾아 실행한 후 break를 만나면 즉시 switch문을 탈출한다!
+   ```javascript  
+      let color = "red";
+
+      switch (color){
+         case red :
+             console.log("red");
+            break;
+         case blue :
+            console.log("blue");
+            break;
+         case green :
+            console.log("green");
+            break;
+         default :
+             console.log("nothing");
+      }
+   ```
+<br/>
+
+3. <span style="color:#febc68;font-weight:bold">삼항연산자 </span>  
+   삼항 연산자를 이용하여 if문을 한줄의 코드로 작성할 수 있다.
+ 
+   ```javascript  
+      let result = 조건 ? 참일때의 값 : 거짓일때의 값;
+      let result = 1 < 10> ? '참' : '거짓';
+      console.log(result);
+   ```  
+ <br/>
+
