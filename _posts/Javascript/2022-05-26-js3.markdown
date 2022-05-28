@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 자바스크립트 문법(2) - 배열, 객체, JSON
+title: 자바스크립트 문법(2) - 배열, 객체
 date: 2022-05-26 21:06:10 +0900
 category: Javascript
 ---
 
-## <span style="color:#97cab3;font-weight:bold">배열, 객체, JSON</span>
+## <span style="color:#97cab3;font-weight:bold">배열, 객체</span>
 
 = 컨테이너 자료형(무언가를 담는 자료의 형태라는 것으로 용도를 유추할 수 있어야 한다!!!)  
 = 숫자, 문자 등 각각 하나로 나눠져있는 것을 원시형 자료라고 하고 이를 모아서 관리하기 위한 것이 컨테이너 자료형이다.
