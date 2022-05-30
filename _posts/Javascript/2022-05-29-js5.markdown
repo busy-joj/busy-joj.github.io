@@ -1,0 +1,54 @@
+---
+layout: post
+title: 자바스크립트 문법(4) - 함수
+date: 2022-05-29 20:58:10 +0900
+category: Javascript
+---
+ 
+## <span style="color:#97cab3;font-weight:bold">함수</span>
+
+= 특별한 목적의 작업을 수행하도록 설게된 독립적인 코드 블록  
+= 변수가 데이터를 담기위한 그릇이었다면, <span style="color:#f27c88;">함수는 소스 코드를 담기 위한 그릇!</span> 
+
+<br/>
+
+### <span style="color:#febc68;font-weight:bold">함수 정의하기</span>  
+ 
+   ```javascript  
+    //기본형, 호이스팅 지원
+    function 함수명(){
+       소스코드;
+    }
+
+    //익명함수, 호이스팅 불가
+    let 변수명 = funciont(){
+       소스코드;
+    }
+    
+    //ES6 - 화살표 함수
+    //익명함수의 일종, 
+   let 변수명 = () =>{
+      소수코드
+   }
+   ```  
+   <span style="color:#f27c88;">* 호이스팅 =  * </span> 
+
+<br/>
+
+   ### <span style="color:#febc68;font-weight:bold">파라미터 (매개변수)</span>
+  = 함수의 재료가 되는 요소
+   ```javascript  
+      function sum(num1, num2){
+       소스코드;
+    }
+   ```  
+   <br/>
+
+   ### <span style="color:#febc68;font-weight:bold">리턴</span>
+  = 리턴값을 통해 함수에서 실행된 결과를 전달 받을 수 있다.
+  = 리턴은 함수의 실행은 중단하고 값을 반환한다.
+   ```javascript  
+      function sum(num1, num2){
+       return num1 + num2;
+    }
+   ```  

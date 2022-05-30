@@ -1,0 +1,150 @@
+---
+layout: post
+title: 자바스크립트 문법(5) - 객체선언방식
+date: 2022-05-29 20:58:10 +0900
+category: Javascript
+---
+ 
+## <span style="color:#97cab3;font-weight:bold">객체지향프로그래밍(OOP)</span>
+
+= object-oriented programming  
+= 객체를 사용해서 모델링하고 프로그래밍을 더 효율적으로 할 수 있게 만들어주는 방법론
+
+    -> 클래스 : 사물이나 개념들의 컨셉 (차)  
+    -> 객체 : 클래스에 맞춰서 만들어진 객체 (빨간차, 하얀차 등)  
+    -> 속성 : 객체가 가지는 데이터 (자동차 바퀴 갯수, 승차 인원 등)  
+    -> 메서드(함수) : 객체가 가지는 기능 (라이트 켜기, 트렁크 열기 등)
+<br/>
+<br/>
+
+### <span style="color:#febc68;font-weight:bold">객체선언방식</span>  
+ 1. 리터럴 방식  
+ = 다루는 방식은 JSON과 같다.
+ 
+      ```javascript  
+      const userInfo = {
+         name: "홍길동",
+         birth: "2020-10-10",
+         getName: function () {
+         return this.name
+         }
+      }
+
+      console.log(userInfo.name);
+      ```  
+ 
+      ```javascript  
+      //화살표 함수에서 this는 좀 다른 값을 낸다...
+      //따라서 this를 사용할 때는 화살표 함수 사용을 지양한다.
+      const obj = {
+         nickname: "하하",
+         age: 22,
+         say: function () {
+         console.log(this);
+         console.log(`제 이름은 ${this.nickname}, 나이는 ${this.age}살 입니다.`);
+         },
+      };
+
+      obj.say();
+
+      ```  
+   <span style="color:#f27c88;">* 호이스팅 =  * </span> 
+
+<br/>
+
+  2. 클래스 방식  
+ = ES6부터 자바스크립트도 클래스 방식을 사용할수 있으며, 권장되는 방식이다.
+ 
+      ```javascript  
+      //class 방식으로 선언할때는 첫번째 글자를 대문자로!
+      class Car {
+         constructor() {
+            this.wheels = 4;
+         }
+            
+            say() {
+            console.log(1);
+            }
+      }
+
+      const myCar = new Car();
+      console.log(myCar);
+      
+
+      console.log(userInfo.name);
+      
+      ```  
+      = 클래스 상속 : extends를 사용하여 상속할 수 있다.
+    
+      ```javascript  
+         //서브 클래스에서 super()메서드를 사용하여 부모생성자에서 정의된 속성을 가져올 수 있다.
+         class SmallCar extends Car {
+            constructor() {
+               super();
+               this.doors = 2;
+            }
+         }
+
+         const mySmallCar = new SmallCar();
+         console.log(mySmallCar);
+         
+      ```  
+   
+      <span style="color:#f27c88;">* 클래스 방식 연습하기  * </span>   
+      1. 비행기 클래스(Aircraft)와 전투기 클래스(FighterAircraft)를 생성한다.  
+      2. 전투기 클래스는 비행기 클래스를 상속한다. 
+      3. 비행기 클래스는 이륙여부를 확인하는 속성(isTakeOff)와 이륙메서드(takeOff)를 가진다.
+      4. 전투기 클래스는 미사일 발사(fire)메서드를 가지고 있다. 단, 이륙을 한 후 발사할 수 있다.
+      5. 전투기 객체를 생성하고 미사일 발사를 할 수 있도록 코드를 작성한다.
+
+      ```javascript
+         class Aircraft(){
+            constructor(){
+               this.isTakeOff = false;
+            }
+            takeOff(){
+               this.isTakeOff = true;
+               console.log("이륙완료");
+               return true;
+            }
+         }
+         class FighterAircraft extends Aircraft(){
+            fire(){
+               if(!this.isTakeOff){
+                  console.log("이륙 후 발사할 수 있습니다.");
+               }
+            }
+         }
+
+         const myCraft = new FighterAircraft();
+         
+         myCraft.takeoff();
+         myCraft.fire();
+
+      ```
+      
+   <br/>
+
+2. Object 생성자 방식
+ 
+      ```javascript  
+         const dummy = new Object();
+
+         dummy.attr = 1;
+         console.log(dummy);
+      
+      ```  
+
+2. 함수 방식
+ 
+      ```javascript  
+         const Dummy = function (param) {
+            this.attr = param;
+         };
+
+         Dummy.prototype.attr2 = 3;
+
+         const obj = new Dummy(1);
+         console.log(obj.attr, obj.attr2);
+      
+      ```  
