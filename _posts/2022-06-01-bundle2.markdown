@@ -1,0 +1,69 @@
+---
+layout: post
+title: Bundler(2) - Webpack
+date: 2022-06-01 20:26:23 +0900
+category: bundle
+---
+
+<img src="../../../../public/img/bundler.png" alt=""/>  
+
+## <span style="color:#97cab3;font-weight:bold">기본 개념</span>
+
+### <span style="color:#febc68;font-weight:bold">번들러(Bundler) 탄생 계기</span> 
+ = 초기 프로젝트 규모와 차원이 다르게 파일의 양도 규모가 빠르게 커지면서 다양한 문제점들이 생겨났다.  
+ 1. 중복된 이름으로 인한 에러  
+  -> 대규모의 웹 페이지의 경우, javascript 파일이 수없이 많고 그 뿐만 아니라 여러 사람이 관리하게 되었고 함수명이나 변수명을 동일하게 부여하게 되는 일들이 발생하게 되었다. 그에 따란 예상치 못한 에러가 발생하게 된다...
+1. 파일로 인한 문제  
+    -> 구성하는 파일의 양이 많아지면, 사용자의 요청에 대한 응답시간은 길어지게 된다. 응답을 기다리는 사용자가 수없이 많아질 경우, 네트워크 병목현상을 초래하기도 한다. 하나의 js파일에 모든 변수, 함수를 추가하고 효율적이고 가독성 높은 코드로 유지보수 하기 위해서 고민하게 된다...
+### <span style="color:#febc68;font-weight:bold">번들러(Bundler)의 등장</span> 
+ =  위와 같은 문제들을 해결하기 위해 번들러가 등장한다.  
+ = 여러개의 파일을 하나의 파일로 묶어주는 역할을 한다.  
+ = 대표적으로 Webpack, Parcel, browserify가 있다.
+<br/>
+<br/>
+
+## <span style="color:#97cab3;font-weight:bold">Parcel vs Webpack ?</span>
+   Parcel | Webpack
+   :--:|:--:
+   구성 없는 단순한 자동 번들링 | 매우 꼼꼼한 구성
+   소/중형 프로젝트에 적합 | 중/대형 프로젝트에 적합
+<br/>
+
+## <span style="color:#97cab3;font-weight:bold">Parcel 시작하기</span>
+### <span style="color:#febc68;font-weight:bold">프로젝트 생성하기</span> 
+   - npm 프로젝트 시작하여 package.js 파일 생성
+   ```bash
+      npm init -y
+   ```   
+   - 개발 의존성 패키지로 parcel bundler 설치 -> node_modules 생성
+   ```bash
+      npm i -D parcel-bundler
+   ``` 
+   - 생성된 'package.json'파일에서 
+   ```javascript
+      "scripts": {
+         "dev" : "parcel index.html", //index.html 연결
+         "build" : "parcel build index.html"
+      }
+   ``` 
+   - 서버 열기
+   ```bash
+      npm run dev
+   ``` 
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">정적파일 연결하기</span> 
+   - 개발 의존성 모듈로 '정적파일연결' plugin 설치
+   ```bash
+      npm i -D parcel-plugin-static-files-copy
+   ```  
+   - plugin 설치 후 'package.json' 파일에 아래 내용 추가
+   ```javascript
+      "staticFiles" : {
+         "staticPath" : "static"
+      }
+      // "static" 이라는 폴더를 패키지가 "dist"라는 폴더로 자동 copy 해준다.
+   ``` 
+
+   [정적파일 연결하기 참고](https://www.npmjs.com/package/parcel-plugin-static-files-copy)  
+   [icon 이미지 만들기 참고](https://www.icoconverter.com/)
