@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Bundler(1) - Parcel
+title: 번들러(1) - Parcel
 date: 2022-05-23 20:26:23 +0900
-category: bundle
+category: Javascript
 ---
 
 <img src="../../../../public/img/bundler.png" alt=""/>  
@@ -66,4 +66,66 @@ category: bundle
    ``` 
 
    [정적파일 연결하기 참고](https://www.npmjs.com/package/parcel-plugin-static-files-copy)  
-   [icon 이미지 만들기 참고](https://www.icoconverter.com/)
+   [icon 이미지 만들기 참고](https://www.icoconverter.com/)  
+
+   <br/>
+      
+### <span style="color:#febc68;font-weight:bold">autoprefixer</span>
+ = 공급업체 접두사(직독직해 ㅎㅎ)   
+ = 브라우저별로 또는 브라우저의 버전별로 지원하는 css 기능이 다르기 때문에 vendor prefixer을 작성하여 모든 브라우저에서 에러를 줄인다.  
+ = autoprefixer는 이러한 prefixer를 자동으로 적용해주는 패키지이다.
+
+   ```bash
+      npm i -D postcss autoprefixer
+   ```
+   - autoprefixer 패키지를 설치한 후 package.json에서 해당 패키지에 대한 옵션을 지정해준다.
+   ```javascript
+      "browserslist" : [
+         "> 1% ", // 전세계의 점유율이 1%이상인 모든 브라우저
+         "last 2 versions" //위에 해당되는 브라우저의 마지막 2버전까지 지원하겠다는 의미의 옵션
+      ]
+   ``` 
+   - .postcssrc.js 파일을 생성 -> 파일 앞에 .를 구성옵션 혹은 숨김 파일을 의미하며, rc(Runtime Configuration의 약어)가 붙은 파일은 구성파일을 의미한다.
+
+   ```javascript
+      // Node.js 환경에서 동작하는 CommonJS방식의 내보내기 가져오기
+
+      const autoprefixer = require('autoprefixer') // = import autoprefixer from 'autoprefixer'
+
+      module.exports = {
+         plugins : [
+            autoprefixer
+         ]
+      } 
+      // = export {
+      //   plugins : [
+      //      autoprefixer
+      //   ]
+      //}
+   ```   
+ 
+   <br/>
+   <br/>
+
+ ### <span style="color:#febc68;font-weight:bold">babel</span>
+  = Babel은 ECMAScript 2015+ 코드를 이전 JavaScript 엔진에서 실행할 수 있는 이전 버전과 호환되는 JavaScript 버전으로 변환하는 데 주로 사용되는 무료 오픈 소스 JavaScript 트랜스컴파일러입니다. Babel은 JavaScript 프로그래밍 언어의 최신 기능을 사용하는 인기 있는 도구입니다. [위키피디아-babel](https://en.wikipedia.org/wiki/Babel_(transcompiler))  
+  = ECMAScript의 최신 버전으로 작성된 파일이 구버전에서 작동하지 않을 수 있기에, 바벨을 이용하여 구버전의 파일로 변환(=컴파일)해주는 도구!  
+  
+  - 개발 의존성 모듈로 babel을 설치해보자
+    ```bash
+      npm i -D postcss autoprefixer
+    ```  
+ - .babelrc.js 파일 생성   
+    ```javascipt
+   
+      module.exports = {
+         preset : ['@babel/preset-env']
+      }
+   ```  
+  - autoprefixer 설치 후 적었던 'browserslist' 관련 옵션이 필요하다.  
+   <br/>
+   <br/>
+
+  ### <span style="color:#febc68;font-weight:bold">CLI</span>
+
+  [parcel-CLI](https://ko.parceljs.org/cli.html) -> 참고하여 여러가지 옵션을 제공해보자.
