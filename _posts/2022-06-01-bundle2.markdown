@@ -81,18 +81,24 @@ category: bundle
 ### <span style="color:#febc68;font-weight:bold">정적파일 연결하기</span> 
    - 개발 의존성 모듈로 '정적파일연결' plugin 설치
    ```bash
-      npm i -D parcel-plugin-static-files-copy
+      npm i -D copy-webpack-plugin
    ```  
-   - plugin 설치 후 'package.json' 파일에 아래 내용 추가
-   ```json
-      "staticFiles" : {
-         "staticPath" : "static"
-      }
-      // "static" 이라는 폴더를 패키지가 "dist"라는 폴더로 자동 copy 해준다.
-   ``` 
+   - plugin 설치 후 'webpack.config.js' 파일에 아래 내용 추가
+   ```javascript
+   const CopyPlugin = require('copy-webpack-plugin')
 
-   [정적파일 연결하기 참고](https://www.npmjs.com/package/parcel-plugin-static-files-copy)  
-   [icon 이미지 만들기 참고](https://www.icoconverter.com/)
+      plugins: [
+         new HtmlPlugin({
+            template: './index.html'
+         }),
+          // from에 작성한 폴더명을 dist파일로 copy해주는 플러그인
+         new CopyPlugin({
+            patterns : [
+               {from: 'static'}
+            ]
+         })
+      ]
+   ``` 
    <br/>
    <br/>
 
