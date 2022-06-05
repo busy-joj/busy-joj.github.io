@@ -102,6 +102,47 @@ category: bundle
    <br/>
    <br/>
 
+### <span style="color:#febc68;font-weight:bold">module - css, scss</span>
+ = css를 읽어주는 모듈을 설치해보자
+   ```bash
+      npm i -D css-loader style-loader
+   ``` 
+
+   ```javascript
+       module:{
+        rules: [
+            {
+                // .css로 끝나는 확장자를 찾는 정규식
+                test:/\.css$/,
+                use:[
+                  'style-loader',
+                  'css-loader'
+                ]
+            }
+        ]
+    }
+   ```
+
+ = scss를 읽어주는 모듈을 설치해보자  
+   ```bash
+      npm i -D sass-loader sass
+   ```   
+   -> sass-loader로 코드를 읽어주고, sass모듈을 통해 문법을 해석해주기 위해 함께 설치한다
+
+    ```javascript
+       module:{
+        rules: [
+            {
+                test:/\.s[ac]ss$/i,
+                use:[
+                  'style-loader',
+                  'css-loader',
+                  'sass-loader'
+                ]
+            }
+        ]
+    }
+   ```
 ### <span style="color:#febc68;font-weight:bold">autoprefixer</span>
  = 공급업체 접두사(직독직해 ㅎㅎ)   
  = 브라우저별로 또는 브라우저의 버전별로 지원하는 css 기능이 다르기 때문에 vendor prefixer을 작성하여 모든 브라우저에서 에러를 줄인다.  
