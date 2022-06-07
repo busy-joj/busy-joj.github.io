@@ -1,0 +1,44 @@
+---
+layout: post
+title: 자바스크립트 - DOM API
+date: 2022-06-08 07:08:54 +0900
+category: Javascript
+---
+
+## <span style="color:#97cab3;font-weight:bold">DOM api</span>
+
+
+### <span style="color:#febc68;font-weight:bold">HTML 요소 선택방법</span>
+
+ - document.getElementsByTagname(태그이름) : 해당 태그 이름의 요소를 모두 선택함(배열)
+ - document.getElementsById(아이디) : 해당 아이디의 요소를 선택함
+ - document.getElementsByClassName(클래스이름) : 해당 클래스에 속한 요소를 모두 선택함(배열)
+ - document.querySelector(선택자) : 해당 선택자로 선택되는 요소를 선택함
+ - document.querySelectorAll(선택자) : 해당 선택자로 선택되는 요소를 모두 선택함(배열)
+   
+   ```javascript
+      //예시
+      console.log(document.getElementByClassName("on")[0])
+   ``` 
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">HTML 요소 Read, Update를 위한 속성</span>
+ 
+   - innerText = "content" : 요소 내부 컨텐츠 조회, 수정  
+   - innerHTML = "HTML" : 요소 내부 엘리먼트 전체 조회, 수정  
+   - style.property = "css" : 요소 스타일 조회, 수정  
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">중첩된 태그에서 선택</span>  
+ 
+   - parentElement : 부모 태그  
+   - children : 자식 태그 리스트  
+   - nextElementSibling : 인접 형제 태그  
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">태그 추가</span>
+= 노드는 매듭, 절, 집합점, 중심정이라는 사전적 의미를 가지고 있으며, 네트워크에서는 데이터 지점이라는 의미를 가진다.
+- document.createElement() : 태그 만들기
+- document.createTextNode(): text 노드 만들기
+- element.appendChild(): 자식 노드 추가하기
+- element.setAttribute(attribute, value): 요소에 속성 추가하기
