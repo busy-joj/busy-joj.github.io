@@ -1,0 +1,40 @@
+---
+layout: post
+title: 자바스크립트 - Window, DOM, BOM
+date: 2022-06-07 20:58:10 +0900
+category: Javascript
+---
+ 
+## <span style="color:#97cab3;font-weight:bold">DOM</span>
+
+   = 웹브라우저에서 자바스크립트를 사용할 때 <span style="color:#f27c88;">모든 것의 최상위 객체는 Window 객체</span>이다.  
+   = <span style="color:#f27c88;">DOM(Document Object Model)</span> : HTML을 조작하기 위한 기능이 존재하는 객체  
+   = <span style="color:#f27c88;">BOM(Browser Object Model)</span> : 브라우저를 조작하기 위한 기능이 존재하는 객체
+![crud 설명](../../../../public/img/dom.png)  
+
+### <span style="color:#febc68;font-weight:bold">간단히 살펴보기 - Window 객체</span>
+   - 웹브라우저를 나타내는 가장 상위에 있는 루트 객체
+   ```javascript
+      window.alert('안녕하세요'); //알림
+      window.comfirm('반가워요'); //확인
+      window.prompt('오늘 기분 어때요?'); //사용자의 입력
+   ``` 
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">간단히 살펴보기 - DOM</span>
+   - 문서 객체 모델인 DOM은 웹페이지 내 모든 콘텐츠를 객체로 나타낸다.
+   - document 객체는 페이지의 진입점 역할
+   - 이 객체를 이용해 각종 CRUD 작업을 할 수 있다.
+   ```javascript
+      document.body.style.background = "red";
+   ``` 
+   <br/>
+
+### <span style="color:#febc68;font-weight:bold">간단히 살펴보기 - BOM</span>
+   - DOM 이외에 브라우저를 제어하는 객체
+     ```javascript
+      navigator.userAgent; // 브라우저와 운영체제에 대한 정보를 제공한다.
+      location.href; // 현재 url을 읽는다.
+      location.pathname; 
+   ``` 
+   <br/>
