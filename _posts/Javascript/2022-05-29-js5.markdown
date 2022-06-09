@@ -31,11 +31,10 @@ category: Javascript
       소수코드
    }
    ```  
-   <span style="color:#f27c88;">* 호이스팅 =  * </span> 
 
 <br/>
 
-   ### <span style="color:#febc68;font-weight:bold">파라미터 (매개변수)</span>
+### <span style="color:#febc68;font-weight:bold">파라미터 (매개변수)</span>
   = 함수의 재료가 되는 요소
    ```javascript  
       function sum(num1, num2){
@@ -44,7 +43,7 @@ category: Javascript
    ```  
    <br/>
 
-   ### <span style="color:#febc68;font-weight:bold">리턴</span>
+### <span style="color:#febc68;font-weight:bold">리턴</span>
   = 리턴값을 통해 함수에서 실행된 결과를 전달 받을 수 있다.
   = 리턴은 함수의 실행은 중단하고 값을 반환한다.
    ```javascript  

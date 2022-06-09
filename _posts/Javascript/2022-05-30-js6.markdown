@@ -48,11 +48,8 @@ category: Javascript
       obj.say();
 
       ```  
-   <span style="color:#f27c88;">* 호이스팅 =  * </span> 
-
-<br/>
-
-  2. 클래스 방식  
+  
+2. 클래스 방식  
  = ES6부터 자바스크립트도 클래스 방식을 사용할수 있으며, 권장되는 방식이다.
  
       ```javascript  
@@ -74,77 +71,76 @@ category: Javascript
       console.log(userInfo.name);
       
       ```  
-      = 클래스 상속 : extends를 사용하여 상속할 수 있다.
-    
-      ```javascript  
-         //서브 클래스에서 super()메서드를 사용하여 부모생성자에서 정의된 속성을 가져올 수 있다.
-         class SmallCar extends Car {
-            constructor() {
-               super();
-               this.doors = 2;
-            }
-         }
-
-         const mySmallCar = new SmallCar();
-         console.log(mySmallCar);
-         
-      ```  
+   = 클래스 상속 : extends를 사용하여 상속할 수 있다.
    
-      <span style="color:#f27c88;">* 클래스 방식 연습하기  * </span>   
-      1. 비행기 클래스(Aircraft)와 전투기 클래스(FighterAircraft)를 생성한다.  
-      2. 전투기 클래스는 비행기 클래스를 상속한다. 
-      3. 비행기 클래스는 이륙여부를 확인하는 속성(isTakeOff)와 이륙메서드(takeOff)를 가진다.
-      4. 전투기 클래스는 미사일 발사(fire)메서드를 가지고 있다. 단, 이륙을 한 후 발사할 수 있다.
-      5. 전투기 객체를 생성하고 미사일 발사를 할 수 있도록 코드를 작성한다.
+   ```javascript  
+      //서브 클래스에서 super()메서드를 사용하여 부모생성자에서 정의된 속성을 가져올 수 있다.
+      class SmallCar extends Car {
+         constructor() {
+            super();
+            this.doors = 2;
+         }
+      }
 
-      ```javascript
-         class Aircraft(){
-            constructor(){
-               this.isTakeOff = false;
-            }
-            takeOff(){
-               this.isTakeOff = true;
-               console.log("이륙완료");
-               return true;
+      const mySmallCar = new SmallCar();
+      console.log(mySmallCar);
+      
+   ```  
+   
+   <span style="color:#f27c88;">* 클래스 방식 연습하기  * </span>   
+   1. 비행기 클래스(Aircraft)와 전투기 클래스(FighterAircraft)를 생성한다.  
+   2. 전투기 클래스는 비행기 클래스를 상속한다. 
+   3. 비행기 클래스는 이륙여부를 확인하는 속성(isTakeOff)와 이륙메서드(takeOff)를 가진다.
+   4. 전투기 클래스는 미사일 발사(fire)메서드를 가지고 있다. 단, 이륙을 한 후 발사할 수 있다.
+   5. 전투기 객체를 생성하고 미사일 발사를 할 수 있도록 코드를 작성한다.
+
+   ```javascript
+      class Aircraft(){
+         constructor(){
+            this.isTakeOff = false;
+         }
+         takeOff(){
+            this.isTakeOff = true;
+            console.log("이륙완료");
+            return true;
+         }
+      }
+      class FighterAircraft extends Aircraft(){
+         fire(){
+            if(!this.isTakeOff){
+               console.log("이륙 후 발사할 수 있습니다.");
             }
          }
-         class FighterAircraft extends Aircraft(){
-            fire(){
-               if(!this.isTakeOff){
-                  console.log("이륙 후 발사할 수 있습니다.");
-               }
-            }
-         }
+      }
 
-         const myCraft = new FighterAircraft();
-         
-         myCraft.takeoff();
-         myCraft.fire();
-
-      ```
+      const myCraft = new FighterAircraft();
+      
+      myCraft.takeoff();
+      myCraft.fire();
+   ```
       
    <br/>
 
 2. Object 생성자 방식
  
-      ```javascript  
-         const dummy = new Object();
+   ```javascript  
+      const dummy = new Object();
 
-         dummy.attr = 1;
-         console.log(dummy);
-      
-      ```  
+      dummy.attr = 1;
+      console.log(dummy);
+   
+   ```  
 
 2. 함수 방식
  
-      ```javascript  
-         const Dummy = function (param) {
-            this.attr = param;
-         };
+   ```javascript  
+      const Dummy = function (param) {
+         this.attr = param;
+      };
 
-         Dummy.prototype.attr2 = 3;
+      Dummy.prototype.attr2 = 3;
 
-         const obj = new Dummy(1);
-         console.log(obj.attr, obj.attr2);
-      
-      ```  
+      const obj = new Dummy(1);
+      console.log(obj.attr, obj.attr2);
+   
+   ```  

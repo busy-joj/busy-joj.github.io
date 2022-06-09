@@ -23,10 +23,10 @@ category: Javascript
 <br/>
 
 ## <span style="color:#97cab3;font-weight:bold">Parcel vs Webpack ?</span>
-   Parcel | Webpack
-   :--:|:--:
-   구성 없는 단순한 자동 번들링 | 매우 꼼꼼한 구성
-   소/중형 프로젝트에 적합 | 중/대형 프로젝트에 적합
+
+- Parcel : 구성 없는 단순한 자동 번들링 / 소,중형 프로젝트에 적합
+- Webpack : 매우 꼼꼼한 구성 / 중,대형 프로젝트에 적합 
+
 <br/>
 
 ## <span style="color:#97cab3;font-weight:bold">Parcel 시작하기</span>
