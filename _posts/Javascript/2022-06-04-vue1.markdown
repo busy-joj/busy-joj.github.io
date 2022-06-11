@@ -86,4 +86,32 @@ category: Javascript
       ```bash
       npm i -D file-loader
     ``` 
-    
+    =eslint?
+      ```bash
+      npm i -D eslint eslint-plugin-vue babel-eslint
+    ``` 
+    = 설치 후 .eslintrc.js에서 옵션 쓰자
+     ```javascript
+        module.exports = {
+        env :{
+            browser: true,
+            node: true
+        },
+        //코드 검사를 할 기본적인 규칙
+        extends:[
+            //vue
+            //'plugin:vue/vue3-essential' // 엄격 lv1
+            'plugin:vue/vue3-strongly-recommended', // 엄격 lv2
+            //'plugin:vue/vue3-recommended' // 엄격 lv3
+            //js
+            'eslint : recommended'
+        ],
+        parserOption: {
+            //코드를 분석할 수 있는 분석기를 지정해주자
+            parser: 'babel-eslint'
+        },
+        rules:{
+            //extends에서 선택한 옵션 중 불필요한 사항이 있을때 작성하면 된다.
+        }
+    }
+    ``` 
