@@ -1,0 +1,117 @@
+---
+layout: post
+title: Vue(5) - 클래스와 스타일 바인딩
+date: 2022-06-13 13:51:01 +0900
+category: Javascript
+---
+
+## <span style="color:#97cab3;font-weight:bold">HTML 클래스 바인딩 - HTML 클래스에 데이터 연결하기</span>
+### <span style="color:#febc68;font-weight:bold">객체 구문</span>  
+ = 클래스 속성에 v-bind를 이용하여 데이터를 연결하고 데이터를 객체 형식으로 제공하여 사용한다. 
+
+ ```html
+  <div
+    class="static"
+    v-bind:class="{ active: isActive, 'text-danger': hasError }">
+  </div>
+  ```
+= 객체를 반환하는 계산된 속성(computed property)로 바인딩 할 수도 있다.
+ ```html
+  <template>
+     <div v-bind:class="classObject"></div>
+  </template>
+
+  <script>
+    export default{
+      data: {
+      isActive: true,
+      error: null
+    },
+    computed: {
+      classObject: function () {
+        return {
+          active: this.isActive && !this.error,
+          'text-danger': this.error && this.error.type === 'fatal'
+        }
+      }
+    }
+  }
+  </script>
+  ```
+
+### <span style="color:#febc68;font-weight:bold">배열 구문</span> 
+= 클래스 속성에 v-bind를 이용하여 데이터를 연결하고 데이터를 배열 형식으로 제공하여 사용한다. 
+ ```html
+  <template>
+     <div v-bind:class="[activeClass, errorClass]"></div>
+
+     <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+      <!-- 삼항연산자를 사용할 수도 있다. -->
+  </template>
+
+  <script>
+    export default{
+      data: {
+        activeClass: 'active',
+        errorClass: 'text-danger'
+      }
+    }
+  </script>
+```
+## <span style="color:#97cab3;font-weight:bold">인라인 스타일 바인딩</span>
+### <span style="color:#febc68;font-weight:bold">객체 구문</span>  
+```html
+    <template>
+       <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+    </template>
+
+  <script>
+    export default{
+      data: {
+        activeColor: 'red',
+        fontSize: 30
+      }
+    }     
+  </script>
+  ```
+
+
+= 탬플릿을 더욱 깔끔하게 하기위해서 스타일 객체에 직접 바인딩 하는 방법도 있다.
+```html
+    <template>
+       <div v-bind:style="styleObject"></div>
+    </template>
+
+  <script>
+    export default{
+      data: {
+        styleObject: {
+          color: 'red',
+          fontSize: '13px'
+        }
+      }
+    }     
+  </script>
+  ```
+### <span style="color:#febc68;font-weight:bold">배열 구문</span> 
+= v-bind:style에 대한 배열 구문은 같은 스타일의 엘리먼트에 여러 개의 스타일 객체를 사용할 수 있다.
+
+```html
+    <template>
+       <div v-bind:style="[baseStyles, overridingStyles]"></div>
+    </template>
+
+  <script>
+    export default{
+      data: {
+        baseStyles: {
+          color: 'red',
+          fontSize: '13px'
+        },
+      overridingStyles: {
+          backgroundcolor: 'red'
+        }
+      }
+    }     
+  </script>
+  ```
