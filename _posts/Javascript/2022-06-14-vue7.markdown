@@ -1,0 +1,155 @@
+---
+layout: post
+title: Vue(6) - 이벤트 핸들링
+date: 2022-06-14 21:38:05 +0900
+category: Javascript
+---
+
+<!-- ## <span style="color:#97cab3;font-weight:bold">이벤트 청취</span> -->
+### <span style="color:#febc68;font-weight:bold">이벤트 청취</span>  
+ = v-on:click="methodName" 혹은 @clikc="methodName"
+
+
+### <span style="color:#febc68;font-weight:bold">메소드 이벤트 핸들러</span>  
+= 대부분의 이벤트 핸들러 로직은 복잡할 것이다. 그러므로 v-on 속성을 사용하는 것 보다 v-on이 호출하고자 하는 메소드의 이름을 받는 것이 좋다.
+
+ ```html
+  <template>
+     <botton @click="handler">Click me!</botton>
+  </template>
+
+  <script>
+    export default{
+      methods:{
+        handler(event){
+          console.log(event)
+        }
+      }
+  }
+  </script>
+  ``` 
+  
+  ```html
+  <!-- vue.js 컴포넌트의 최상의 template에는 v-if를 작성하면 안된다. -->
+  <template>
+     <botton @click="handler">Click me!</botton>
+     <!-- 화면에 감싸놓은 div요소가 출력됨 -->
+     <div v-if="isShow">
+      <h1>Title</h1>
+      <p>Paragraph1</p>
+      <p>Paragraph2</p>
+     </div>
+
+     <!-- 화면에 감싸놓은 요소는 출력되지 않음 -->
+     <template v-if="isShow">
+      <h1>Title</h1>
+      <p>Paragraph1</p>
+      <p>Paragraph2</p>
+     </template>
+  </template>
+
+  <script>
+    export default{
+      data() {
+        return{
+          isShow :true,
+          count: 0
+        }
+      },
+      methods:{
+        handler(){
+          this.isShow = !this.isShow
+          this.count += 1
+        }
+      }
+  }
+  </script>
+  ```
+### <span style="color:#febc68;font-weight:bold">v-show</span>  
+= v-if와 사용법은 같다. v-if는 값이 false일 때 구조적으로 렌더링을 하지 않는다. 반면 v-show는 값이 false일 때 구조적으로 렌더링 하긴 하지만, 화면에는 출력되지 않는다. 사용자 도구를 켜서 둘의 차이를 확인 할 수 있다.
+
+## <span style="color:#97cab3;font-weight:bold">리스트 랜더링</span>
+= v-for를 사용하여 배열 기반의 리스트로 렌더링 한다. v-for는 item(배열 내 엘리먼트) in items(원본 데이터 배열) 와 같은 형태로 사용하여야 한다. 
+
+  ```html
+  <template>
+     <ul>
+      <li v-for="(fruit, index) in fruits">
+        <!-- {{ fruit }}-{{ index }} -->
+        {{ fruit }}-{{ index + 1}}
+      </li>
+     </ul>
+  </template>
+
+  <script>
+    export default{
+      data() {
+        return{
+          fruits :['apple', 'banana', 'cherry']
+        }
+      }
+    }   
+  </script>
+  ```
+
+
+= 배열과 객체 데이터로 만들어 낼 때 각각의 아이디를 고유하게 만들어줄 패키지를 설치해보자.
+```bach
+  npm i -D shortid
+```
+
+  ```html
+  <!-- 사용방법 -->
+  <template>
+    <button @click="handler">Click me!</button>
+     <ul>
+      <!-- v-for="fruit in newFruits"-->
+      <li  
+        v-for="{fruit} in newFruits"
+        :key="id">
+        {{ name }}-{{ id}}
+      </li>
+     </ul>
+  </template>
+
+  <script>
+    // 설치한 패키지를 import를 통해서 불러온다!
+    import shortid from 'shortid'
+    export default{
+      data() {
+        return{
+          fruits :['apple', 'banana', 'cherry']
+        }
+      },
+      computed:{
+        newFruits(){
+          return this.fruits.map(fruit => ({
+            id: shortid.generate(),
+            name: fruit
+          }))
+        }
+      },
+      methods:{
+        handler(){
+          this.fruits.push('orange')
+        }
+      }
+    }   
+  </script>
+  ```
+
+= 배열 변경 감지 
+1. 변이 메소드: 변이 메소드를 래핑하여 뷰 갱신을 트리거한다(= 반응성)
+- push() : 배열 데이터의 가장 뒤쪽에 아이템을 밀어넣는다.
+- pop() : 배열 데이터에 가장 뒤쪽 아이템을 반환한다.
+- shift() : 배열 데이터에 가장 앞쪽 아이템을 반환한다.
+- unshift() : 배열 데이터의 가장 앞쪽에 아이템을 밀어넣는다.
+- splice() : index를 이용해서 데이터를 넣거나 삭제 해줄때
+- sort() : 배열을 정렬시켜준다.
+- reverse() : 배열을 뒤집어 준다.
+
+2. 배열 교체(대체) : 변이 메소드를 원본 배열을 변형한다면, 배열 교체(대체)메소드는 새 배열을 반환한다.
+- filter() : 요청 대로 걸러주는 함수
+- concat() : 두 개의 배열을 하나의 배열로 만들어주는 함수
+- slice() : 인자 값에 해당하는 배열의 값으로 새로운 배열을 만들어 주는 함수
+
