@@ -1,0 +1,71 @@
+---
+layout: post
+title: 자바스크립트 - 생성자 함수
+date: 2022-06-16 20:18:14 +0900
+category: Javascript
+---
+### <span style="color:#febc68;font-weight:bold">객체</span>
+객체란 서로 연관된 변수와 함수를 그룹핑한 그릇이라고 할 수 있다.  
+객체 내의 <span style="color:#f27c88;">변수를 프로퍼티(property, 속성)</span>이라고 하고, <span style="color:#f27c88;">함수를 메소드(method)</span>라고 부른다.
+
+```javascript
+   // 객체 만드는 방법 1
+   const a = {}
+   a.name = 'joj';
+   a.intro = function(){
+      return 'My name is ' +this.name;
+   }
+
+   // 객체 만드는 방법 2
+   const a = {
+      'name' : 'joj',
+      'intro' : function(){
+         return 'My name is ' +this.name;
+      }
+   }
+```
+
+### <span style="color:#febc68;font-weight:bold">생성자</span>
+생성자(constructor)는 객체를 만드는 역할의 함수이다.   
+함수 앞에 <span style="color:#f27c88;">new</span>가 붙으면 더이상 함수가 아닌 <span style="color:#f27c88;">(객체)생성자</span>가 된다.  
+생성자 함수를 담은 변수는 <span style="color:#f27c88;">인스턴스</span>라고 한다.
+
+```javascript
+   // AAA 라는 함수를 선언하고
+   function AAA(){};
+   // A라는 변수에 함수를 담은 후 
+   const A = AAA();
+   //호출하지만, 리턴값 = undefined
+   console.log(A);
+
+
+   // 같은 내용이지만
+   function AAA(){};
+   // new를 추가하고 
+   const A = new AAA();
+   // 리턴값 = AAA{} 라는 객체
+   console.log(A);
+```
+
+
+생성자는 객체에 대한 초기화(init)를 한다.  
+생성자 함수의 셋팅을 가져와서 생성자가 만들어놓은 빈 객체에 넣어주는 것을 초기화라고 한다.
+이를 통해 코드의 재사용성이 크게 향상된다.
+
+```javascript
+   //생성자 함수
+   function AAA(name){
+      this.name = name;
+      this.intro = function(){
+         return 'My name is' +this.name;
+      }
+   }
+   
+   const A1 = new AAA('joj');
+   document.write(A1.intro());
+
+   const A2 = new AAA('jyj');
+   document.write(A2.intro());
+```
+
+

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 번들러(2) - Webpack
+title: 번들러 - Webpack
 date: 2022-06-01 20:26:23 +0900
 category: Javascript
 ---
