@@ -1,0 +1,147 @@
+---
+layout: post
+title: Vue(7) - 이벤트 핸들링
+date: 2022-06-14 21:38:05 +0900
+category: Javascript
+---
+
+### <span style="color:#febc68;font-weight:bold">이벤트 청취</span>  
+ = v-on:click="methodName" 혹은 @clikc="methodName"
+
+
+### <span style="color:#febc68;font-weight:bold">메소드 이벤트 핸들러</span>  
+= 대부분의 이벤트 핸들러 로직은 복잡할 것이다. 그러므로 v-on 속성을 사용하는 것 보다 v-on이 호출하고자 하는 메소드의 이름을 받는 것이 좋다.
+
+ ```html
+  <template>
+     <!-- 인수가 필요하지 않을때에 메소드의 괄호 생략 가능 -->
+     <botton @click="handler">Click me1</botton>
+     <botton @click="handler('hi')">Click me2</botton>
+     <!-- 여러 개의 메소드를 실행하고 싶을 때는 인수가 없더라도 괄호를 생략해서는 안된다. -->
+     <botton @click="handlerA(),handlerB()">Click me2</botton>
+  </template>
+
+  <script>
+    export default{
+      methods:{
+        handler(msg){
+          //각 버튼을 클릭했을 때 console에 찍히는 내용이 다르다
+          console.log(msg)
+        },
+        handlerA(){
+          console.log('A')
+        },
+        handlerB(){
+          console.log('B')
+        }
+      }
+  }
+  </script>
+  ``` 
+### <span style="color:#febc68;font-weight:bold">이벤트 수식어</span> 
+= 수식어는 체이닝이 가능하다. 또한 메소드 사용없이 수석어만 사용 가능하다.
+- .stop
+```html
+  <!-- 클릭 이벤트 전파가 중단 (feat.이벤트 버블링) -->
+  <a v-on:click.stop="doThis"></a>
+```
+- .prevent
+ ```html
+  <template>
+    <a 
+      href="https://naver.com"
+      target+"_blank"
+      @click.prevent="handler">
+      <!-- event.preventDefault와 같은 수식어 -->
+      naver  
+    </a>
+  </template>
+
+  <script>
+    export default{
+      methods:{
+        handler(){
+          console.log('ABC')
+        }
+      }
+  }
+  </script>
+  ```
+- .capture
+```html
+ <!-- 이벤트 리스너를 추가할 때 캡처모드를 사용 (feat.이벤트 캡처링) -->
+<!-- 즉, 내부 엘리먼트를 대상으로 하는 이벤트가 해당 엘리먼트에서 처리되기 전에 여기서 처리 -->
+<div v-on:click.capture="doThis">...</div>
+```
+- .self
+```html
+<!-- event.target이 엘리먼트 자체인 경우에만 트리거를 처리 -->
+<!-- 자식 엘리먼트에서는 X -->
+<div v-on:click.self="doThat">...</div>
+```
+- .once
+```html
+<!-- 클릭 이벤트는 최대 한번만 트리거. -->
+<a v-on:click.once="doThis"></a>
+```
+- .passive
+```html
+<!-- 스크롤의 기본 이벤트를 취소할 수 없다 -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+### <span style="color:#febc68;font-weight:bold">키 수식어</span> 
+ = 이벤트 객체에서 Key의 값을 확인하여 사용하며, -를 사용하여 작성하면 된다. 역시 체이닝 가능하다.
+
+- .enter
+- .tab
+- .delete (“Delete” 와 “Backspace” 키 모두를 캡처합니다)
+- .esc
+- .space
+- .up
+- .down
+- .left
+- .right
+
+
+ ```html
+  <!-- 이벤트 객체에서 key 값을 확인해보자 -->
+  <template>
+    <input 
+      type="text"
+      @keydown="handler" />
+  </template>
+
+  <script>
+    export default{
+      methods:{
+        handler(event){
+          console.log(event)
+        }
+      }
+  }
+  </script>
+  ```
+= 시스템 수식어 키 목록
+- .ctrl
+- .alt
+- .shift
+- .meta
+   ```html
+  <!-- ctrl 과 a가 같이 입력 되었을 때 이벤트 실행 -->
+  <template>
+    <input 
+      type="text"
+      @keydown.ctrl.a="handler" />
+  </template>
+
+  <script>
+    export default{
+      methods:{
+        handler(){
+          console.log('!!!')
+        }
+      }
+  }
+  </script> 
+  ```
