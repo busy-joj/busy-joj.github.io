@@ -54,6 +54,9 @@ category: Javascript
    
    = 변수를 선언할 때 <span style="color:#f27c88;">var, let, const</span>를 변수 앞에 작성한 후 사용한다.  
    <span style="color:#f27c88;">* var 보다 let, const를 주로 사용 * </span>  
+   -> let, const 블럭 레벨의 유효범위를 가진다.  
+   -> var은 함수 레벨의 유효범위를 가진다. 
+ 범위가 더 크기 때문에, 의도하지 않은 범위에서 사용이 될 수 있고 그만큼 메모리를 차지하거나 메모리 누수로 발전할 수 있다.
    
    = 변수명은 의미에 맞게 부여하되, 한글은 사용할 수 없다.   
    ```javascript  
