@@ -1,0 +1,80 @@
+---
+layout: post
+title: 자바스크립트 - this
+date: 2022-06-17 11:00:06 +0900
+category: Javascript
+---
+
+this는 함수 내에서 함수 호출 맥락을 의미한다.  
+맥락이라는 것은 상황에 따라 달라진다는 의미로, 함수를 어떻게 호출하느냐에 따라 this가 가리키는 대상이 달라진다는 뜻이다.  
+```javascript
+   function func(){
+      if(window===this){
+         document.write("window === this")
+      }
+   }
+
+   func();
+   //결과 window === this
+```
+### <span style="color:#febc68;font-weight:bold">메소드의 호출 </span>
+객체의 소속인 메소드의 this는 그 객체를 가르킨다.
+```javascript
+
+   const o = {
+      func : function(){
+      if(o === this){
+         document.write("o === this")
+      }
+   }
+   }
+   
+
+   o.func();
+   //결과 o === this
+```
+
+
+
+
+
+
+전역객체(Global object)는 특수한 객체이다.  
+<span style="color:#f27c88;">모든 객체는 전역객체의 property(속성)</span>이다.
+
+```javascript
+   function func(){
+      alert('Hello?');
+   }
+
+   // 평소 함수를 호출하는 방법은, 전역객체가 생략된 형태이다.
+   func();
+   window.func();
+```
+전역객체 관습적으로 생략하고 작성한다.
+<br/>
+<br/>
+<span style="color:#f27c88;">핵심  </span>  
+함수 앞에 . 이 붙어 있다면 그것은 객체를 의미한다.   
+객체 뒤에 . 과 property 혹은 method가 작성된다!!!!!!!!
+
+
+객체를 만들고 객체 안에서 메소드를 정의했다는 것은 무엇을 의미할까?  
+
+```javascript
+   const a = {
+      'func' : function(){
+         alert('hello');
+      }
+   }
+
+   o.func();
+   window.o.func();
+   //두 실행 값은 같다.
+```
+<br/>
+
+<span style="color:#f27c88;">즉, 모든 객체는 기본적으로 전역객체의 property임을 알 수 있다!</span> 
+
+### <span style="color:#febc68;font-weight:bold">전역객체는 호스트 환경에 따라서 달라진다! </span> 
+### <span style="color:#febc68;font-weight:bold">웹브라우저 자바스크립의 전역객체는 window이지만, node.js와 같은 서버측 자바스크립를 쓰고 있다면, global이 전역객체가 된다.</span>
