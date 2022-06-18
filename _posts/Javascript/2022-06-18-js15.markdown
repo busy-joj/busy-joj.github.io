@@ -1,0 +1,35 @@
+---
+layout: post
+title: 자바스크립트 - 타이머 함수
+date: 2022-06-17 11:00:06 +0900
+category: Javascript
+---
+
+### <span style="color:#febc68;font-weight:bold"> 타이머 함수</span>  
+= setTimeout(함수, 시간) : 일정 시간 후 함수 실행
+= setInterval(함수, 시간) : 시간 간격마다 함수 실행
+= clearTimeout() : 설정된 timeout 함수를 종료
+= clearInterval() : 설정된 Interval 함수를 종료
+
+
+```javascript
+    const timer = setTimeout(() => {
+      console.log('hi')
+    }, 3000)
+
+    const el = document.querySelector('h1')
+    el.addEventListener('click', () => {
+      clearTimeout(timer)
+    })
+```
+
+```javascript
+    const timer = setInterval(() => {
+      console.log('hi')
+    }, 3000)
+
+    const el = document.querySelector('h1')
+    el.addEventListener('click', () => {
+      clearInterval(timer)
+    })
+```
