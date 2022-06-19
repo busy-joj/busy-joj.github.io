@@ -1,0 +1,31 @@
+---
+layout: post
+title: 자바스크립트 - 즉시실행함수
+date: 2022-06-17 11:00:06 +0900
+category: Javascript
+---
+### <span style="color:#febc68;font-weight:bold">즉시실행함수 (IIFE = Immediately-Invoked Function Expression)</span>  
+= 함수 표현은 함수를 정의하고, 변수에 함수를 저장하고 실행하는 과정을 거치지만, 즉시 실행 함수는 저장없이 정의하고 바로 실행하는 함수이다.
+```javascript
+  const a = 7
+  function double(){
+    console.log(a * 2)
+  }
+
+  double();
+
+  // 한 번의 실행만 필요로 하는 함수라면 실행 함수를!
+  // 표현법 1 ()()
+    (function(){
+      console.log(a * 2)
+    })();
+    
+  // 표현법 2 (f ())
+    (function(){
+      console.log(a * 2)
+    }());
+```    const el = document.querySelector('h1')
+    el.addEventListener('click', () => {
+      clearInterval(timer)
+    })
+```
