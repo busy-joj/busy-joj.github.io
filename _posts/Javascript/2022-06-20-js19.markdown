@@ -1,0 +1,47 @@
+---
+layout: post
+title: 자바스크립트 - 전개 연산자
+date: 2022-06-20 22:23:45 +0900
+category: Javascript
+---
+### <span style="color:#febc68;font-weight:bold">전개 연산자 ( spread )</span>  
+하나의 배열 데이터를 각각의 아이템으로 전개해서 출력해준다.
+
+```javascript
+  const fruits = ['apple','banana','cherry']
+  console.log(fruits)
+  //출력값 (3)['apple','banana','cherry']
+
+  console.log(...fruits)
+   //출력값 apple, banana, cherry
+
+
+  //활용법
+  function toObject(a, b, c){
+    return {
+      a : a,
+      b : b,
+      c : c
+    }
+  }
+  console.log(toObject(...fruits))
+  // = console.log(toObject(fruits[0], fruits[1], fruits[2]))
+```
+
+
+### <span style="color:#febc68;font-weight:bold">나머지 매개변수 (rest)</span>  
+배열 데이터가 추후 추가 되었을 때,   
+작성해놓은 함수에서 데이터의 값 갯수와 매개변수의 갯수가 동일하지 않아도  
+나머지 매개변수를 이용하여, 매칭되는 데이터와 매개변수의 나머지를 모두 담아준다.
+
+```javascript
+  const fruits = ['apple','banana','cherry', 'orange', 'melon']
+  function toObject(a, b, ...c){
+    return {
+      a : a,
+      b : b,
+      c : c
+    }
+  }
+  console.log(toObject(...fruits))
+```
