@@ -1,0 +1,49 @@
+---
+layout: post
+title: 자바스크립트 - 가져오기, 내보내기
+date: 2022-06-21 19:23:45 +0900
+category: Javascript
+---
+### <span style="color:#febc68;font-weight:bold">가져오기</span>  
+- 기본 가져오기
+```javascript
+  import _ from 'lodash' // From 'node_modules'
+  import getType from './getType' 
+```
+
+- 하나의 모듈에서 여러개 가져오기
+```javascript
+  import { random, user } from './getRandom' //getRandom.js
+  
+  // 와일드 카드(*)이용해서 여러개 가져오기
+  import * as R from './getRandom' 
+```
+- 하나의 모듈에서 여러개 가져오기
+```javascript
+  import { random, user } from './getRandom' //getRandom.js
+  
+  // 와일드 카드(*)이용해서 여러개 가져오기
+  import * as R from './getRandom' 
+```
+
+### <span style="color:#febc68;font-weight:bold">내보내기</span>  
+- Default exports
+```javascript
+  export default function getType(data){
+    return Object.prototype.toString.call(data)
+  }
+```
+- named exports
+몇개를 내보내
+```javascript
+  export function random(){
+    return Math.floor(Math.random() * 10)
+  }
+  export const user = {
+    name: 'joj',
+    age : 85
+  }
+```
+
+
+하나의 자바스크립트 내에서 Default, Named exports 방식을 같이 기재할 수 있다.
