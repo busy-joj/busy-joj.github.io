@@ -5,36 +5,36 @@ date: 2022-06-21 19:23:45 +0900
 category: Javascript
 ---
 ### <span style="color:#febc68;font-weight:bold">가져오기</span>  
-- 기본 가져오기
+- 기본 가져오기(with Default exports)
 ```javascript
-  import _ from 'lodash' // From 'node_modules'
+  //아무 이름이나 입력해도 상관 없다.
+  import _ from 'lodash' // 가져올 js 파일 위치
   import getType from './getType' 
 ```
 
-- 하나의 모듈에서 여러개 가져오기
+- 기본 가져오기(with named exports)
 ```javascript
-  import { random, user } from './getRandom' //getRandom.js
+  // 직접 명시한 후 {}로 감싸줘야 한다.
+  import { random } from './getRandom' 
+
+  // 하나의 모듈에서 여러개 가져오기
+  import { random, user } from './getRandom' 
   
-  // 와일드 카드(*)이용해서 여러개 가져오기
-  import * as R from './getRandom' 
-```
-- 하나의 모듈에서 여러개 가져오기
-```javascript
-  import { random, user } from './getRandom' //getRandom.js
-  
-  // 와일드 카드(*)이용해서 여러개 가져오기
-  import * as R from './getRandom' 
+  // as를 사용하여 원래 명칭이 아닌 별칭을 지정하여 가져올 수 있다.
+  import { random, user as joj } from './getRandom' 
+
+  // 와일드 카드(*)이용해서 js 내 모든 모듈 가져오기
+  import * as R from './getRandom'
 ```
 
 ### <span style="color:#febc68;font-weight:bold">내보내기</span>  
-- Default exports
+- Default exports : 이름을 지정하지 않아도 되는 방식으로 한 개의 js 파일에서 하나의 데이터만 내보내기 할 수 있다.
 ```javascript
   export default function getType(data){
     return Object.prototype.toString.call(data)
   }
 ```
-- named exports
-몇개를 내보내
+- named exports : 이름을 지정하는 방식으로, 이름이 지정된 데이터라면 몇 개든 제한없이 내보내기 할 수 있다.
 ```javascript
   export function random(){
     return Math.floor(Math.random() * 10)
@@ -43,6 +43,7 @@ category: Javascript
     name: 'joj',
     age : 85
   }
+  
 ```
 
 
