@@ -1,0 +1,40 @@
+---
+layout: post
+title: 자바스크립트 - lodash
+date: 2022-06-23 22:41:45 +0900
+category: Javascript
+---
+### <span style="color:#febc68;font-weight:bold">lodash란?</span> 
+```javascript
+  import _ from 'lodash'
+``` 
+lodash는 javascript의 인기있는 라이브러리 중 하나이다.  
+보통 array, collection, data 등 데이터의 필수적인 구조를 쉽게 도와준다.
+몇 가지의 사용법을 알아보자.  
+- _.uniq() : 중복된 값을 제거하고 고유한 값만 리턴해준다.
+```javascript
+  _.uniq([2,1,2])
+  // => [2,1]
+```
+- _.uniqBy() : uniq와 비슷하지만, 고유한 값임을 판단하는 기준을 인수로 넣어주어야 한다.
+```javascript
+  _.uniqBy(users, 'userId')
+```
+- _.unionBy() : 여러 개의 배열 데이터를 중복이 없는 상태로 고유한 값만 리턴하여 만들어준다.
+```javascript
+  _.unionBy(userA, userB, 'userId')
+```
+- _.find() : 배열 내의 특정 값을 찾아 반환한다.
+```javascript
+  _.find( 배열명 , {객체의 속성 : 값} )
+```
+
+- _.findIndex() : 배열 내의 특정 값을 찾아 그 값의 인덱스 번호를 반환한다.
+```javascript
+  _.findIndex( 배열명 , {객체의 속성 : 값} )
+```
+
+- _.remove() : 배열 내의 특정 값을 찾아 삭제 해준다.
+```javascript
+  _.remove( 배열명 , {객체의 속성 : 값} )
+```
