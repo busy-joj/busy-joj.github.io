@@ -2,7 +2,7 @@
 layout: post
 title: Vue(6) - 랜더링(조건부랜더링, 리스트 랜더링)
 date: 2022-06-13 15:59:52 +0900
-category: Javascript
+category: Framework
 ---
 
 ## <span style="color:#97cab3;font-weight:bold">조건부 랜더링</span>

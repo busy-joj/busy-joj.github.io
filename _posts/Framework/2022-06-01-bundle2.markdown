@@ -2,7 +2,7 @@
 layout: post
 title: 번들러 - Webpack
 date: 2022-06-01 20:26:23 +0900
-category: Javascript
+category: Framework
 ---
 
 ## <span style="color:#97cab3;font-weight:bold">Webpack 시작하기</span>

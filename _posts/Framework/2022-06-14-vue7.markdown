@@ -2,7 +2,7 @@
 layout: post
 title: Vue(7) - 이벤트 핸들링
 date: 2022-06-14 21:38:05 +0900
-category: Javascript
+category: Framework
 ---
 
 ### <span style="color:#febc68;font-weight:bold">이벤트 청취</span>  

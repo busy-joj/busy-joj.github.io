@@ -2,7 +2,7 @@
 layout: post
 title: Vue(9) - 컴포넌트
 date: 2022-06-15 22:35:18 +0900
-category: Javascript
+category: Framework
 ---
 
 ### <span style="color:#febc68;font-weight:bold">양방향 데이터 바인딩!!</span>  
