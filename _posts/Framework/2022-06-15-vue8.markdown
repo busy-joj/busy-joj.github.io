@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue(8) - 폼 입력 바인딩
+title: Vue - 폼 입력 바인딩
 date: 2022-06-15 22:35:18 +0900
 category: Framework
 ---
