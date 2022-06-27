@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue(5) - 클래스와 스타일 바인딩
+title: Vue - 클래스와 스타일 바인딩
 date: 2022-06-13 13:51:01 +0900
 category: Framework
 ---
