@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue(1) - 시작하기, 설치 방법
+title: Vue - 시작하기, 설치 방법
 date: 2022-06-04 20:40:23 +0900
 category: Framework
 ---
