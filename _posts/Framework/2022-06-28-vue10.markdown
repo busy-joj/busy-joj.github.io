@@ -1,0 +1,132 @@
+---
+layout: post
+title: Vue - props, emits(데이터 통신)
+date: 2022-06-15 22:35:18 +0900
+category: Framework
+---
+
+### <span style="color:#febc68;font-weight:bold">Props</span> 
+자식 컴포넌트에서 부모의 데이터를 직접 참조할 수 없기 때문에, Props 옵션을 사용하여 자식 컴포넌트로 전달한다.
+Props는 부모 컴포넌트의 정보를 자식 컴포넌트에 전달하기 위한 사용자 지정 특성이다.
+부모 컴포넌트에서 전달하고자 하는 값을 자식 컴포넌트에 v-bind를 통해 전달한다.  
+
+ ```html
+  <!-- 부모 컴포넌트 = App.vue -->
+  <template>
+    <MyBtn />
+    <MyBtn color="royalblue"/>
+    <MyBtn large />
+    <MyBtn />
+  </template>
+
+  <script>
+    import MyBtn from '~/components/MyBtn'
+    export default {
+      components: {
+        MyBtn
+      }
+    }
+  </script>
+  ``` 
+ ```html
+ <!-- 자식 컴포넌트 = Mybtn.vue -->
+  <template>
+    <div 
+    :class="{ large }"
+    :style="{ backgroundColor : color }"
+    class="btn">
+      apple
+    </div>
+  </template>
+
+  <script>
+    export default {
+      props:{
+        color:{
+          type : String,
+          default: 'gray'
+        },
+        large:{
+          type:Boolean,
+          default: false
+        }
+      }
+    }
+  </script>
+
+  <style scoped lang="scss">
+    .btn {
+      display: inline-block;
+      margin: 4px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: gray;
+      color: white;
+      cursor: pointer;
+      &.large{
+        font-size:20px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+  ```
+### <span style="color:#febc68;font-weight:bold">emits</span> 
+Props는 상하위 컴포넌트 간의 데이터 전달을 위해 사용했다면,  
+emit은 다른 컴포넌트에게 이벤트를 전달하기 위해 사용할 수 있다.  
+특정한 이벤트를 하위 컴포넌트에서 emits라는 옵션에 연결한 후 $emit 이라는 메소드에 작성하여 이벤트를 수행한다.  
+
+
+ ```html
+  <!-- 부모 컴포넌트 = App.vue -->
+  <template>
+    <MyBtn @jyj="log">
+      Banana
+    </MyBtn>
+  </template>
+
+  <script>
+    import MyBtn from '~/components/MyBtn'
+    export default {
+      components: {
+        MyBtn
+      },
+      methods :{
+        log(){
+          console.log('click!!')
+        }
+      }
+    }
+  </script>
+``` 
+ ```html
+ <!-- 자식 컴포넌트 = Mybtn.vue -->
+  <template>
+    <div class="btn">
+      <slot></slot>
+    </div>
+    <h1 @click="$emit('jyj')">ABC</h1>
+  </template>
+
+  <script>
+    export default {
+      emits:[
+        //콘솔이라는 이벤트 in 부모 컴포넌트
+        'jyj'
+      ]
+    }
+  </script>
+
+  <style scoped lang="scss">
+    .btn {
+      display: inline-block;
+      margin: 4px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: gray;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+  ``` 
+상위 컴포넌트 내에서 컴포넌트가 사용되는 곳에 연결하는 이벤트는 사용자가 이름을 지정하여 사용할 수 있으며,
+그 지정한 이름을 emits에 정확히 명시한 후 하위 컴포넌트에서 실제 동작할 수 있는 이벤트를 연결하여 사용한다.

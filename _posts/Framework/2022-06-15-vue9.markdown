@@ -80,7 +80,7 @@ inheritAttrs 속성을 자식 컴포넌트 스크립트 옵션으로 작성해�
  <!-- 자식 컴포넌트 = Mybtn.vue -->
    <template>
     <div class="btn">
-      <slot></slot>
+      {{ 바나나 }}
     </div>
     <!-- 다른 표현방식, 같은 출력물 -->
     <h1 :class="$attrs.class" :style="$attrs.style"></h1>
