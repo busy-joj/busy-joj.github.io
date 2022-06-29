@@ -1,0 +1,93 @@
+---
+layout: post
+title: Vue - slot
+date: 2022-06-29 13:18:32 +0900
+category: Framework
+---
+
+### <span style="color:#febc68;font-weight:bold">slot</span> 
+![slot 설명](../../../../public/img/slot.png)  
+상위 컴포넌트에 slot content, 보여주고자 하는 콘텐츠를 작성하고,  
+하위 컴포넌트에서 상위 제공 slot content가 렌더링되어야 하는 위치에 slot을 작성하여 사용합니다.
+
+ ```html
+  <!-- 부모 컴포넌트 = App.vue -->
+  <template>
+    <MyBtn>Bansns</MyBtn>
+  </template>
+
+  <script>
+    import MyBtn from '~/components/MyBtn'
+    export default {
+      components: {
+        MyBtn
+      }
+    }
+  </script>
+  ``` 
+ ```html
+ <!-- 자식 컴포넌트 = Mybtn.vue -->
+  <template>
+    <div class="btn">
+      <slot></slot>
+    </div>
+  </template>
+
+  <style scoped lang="scss">
+    .btn {
+      display: inline-block;
+      margin: 4px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: gray;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+  ```
+### <span style="color:#febc68;font-weight:bold">렌더 범위</span> 
+슬롯 콘텐츠가 상위 구성 요소에 정의 되어 있기 때문에 상위 구성 요소의 데이터 범위에 접근할 수 있다.  
+그러나 슬롯 콘텐츠는 하위 구성 요소의 데이터에는 접근할 수 없다!
+
+### <span style="color:#febc68;font-weight:bold">fallback contents</span>   
+부모 컴포넌트에 슬롯 콘텐츠가 제공되지 않을 때, 자식 컴포넌트에 작성된 슬롯에 작성한 콘텐츠가 대체되어 렌더링 된다.  
+그러나 부모와 자식 컴포넌트 모두 슬롯 콘텐츠를 제공하고 있을 때는 부모 컴포넌트의 슬롯 콘텐츠로 렌더링 된다.
+
+ ```html
+  <!-- 부모 컴포넌트 = App.vue -->
+  <template>
+    <MyBtn />
+  </template>
+  ``` 
+  ```html
+ <!-- 자식 컴포넌트 = Mybtn.vue -->
+  <template>
+    <div class="btn">
+      <slot>Banana</slot>
+    </div>
+  </template>
+  ``` 
+
+  ### <span style="color:#febc68;font-weight:bold">이름을 갖는 slot</span>   
+  하나의 컴포넌트에 여러 개의 슬롯 콘텐츠를 작성할 때 사용된다.
+slot에서 name을 통해 이름을 정해주고 이를 상위 컴포넌트에서 v-slot을 통해 사용할 수 있으며, 이름을 갖은 slot은 순서를 보장해줄 수 있다. 
+  ```html
+ <!-- 부모 컴포넌트 = App.vue -->
+  <template>
+    <MyBtn>
+      <template v-slot:icon><span>(B)</span></template>
+      <!-- <template v-slot:text><span>Banana</span></template> -->
+      <!-- 약어 #을 사용한 표현방법 -->
+      <template #text><span>Banana</span></template>
+    </MyBtn>
+  </template>
+  ```
+  ```html
+ <!-- 자식 컴포넌트 = Mybtn.vue -->
+  <template>
+    <div class="btn">
+      <slot name="icon"></slot>
+      <slot name="text"></slot>
+    </div>
+  </template>
+  ```
