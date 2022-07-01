@@ -1,0 +1,53 @@
+---
+layout: post
+title: 자바스크립트 - storage
+date: 2022-07-01 15:23:45 +0900
+category: Javascript
+---
+
+Storage는 local storage와 session storage가 있다.  
+개발자 도구(f12)에서 Application - Storage 부분에서 확인할 수 있고, storage는 key와 value로 구성되어있다.
+
+### <span style="color:#febc68;font-weight:bold">local storage</span> 
+local storage를 사용하면 storage 객체에 접근할 수 있다.  
+local storage에 저장되는 데이터는 해당하는 도메인 주소에 종속되어 저장된다. 쉽게 말해 하나의 사이트에 종속된다.  
+local storage의 데이터는 만료되지 않는다. 따라서 데이터를 반영구적으로 사용할 수 있다. 
+```javascript
+  //localStorage.setItem( key , vale ) - 추가
+  localStorage.setItem('myCat','Tom')
+
+  // localStorage.getItem( key ) - 읽기
+  const cat = localStorage.getItem('myCat')
+
+  // localStorage.removeItem( key ) - 제거
+  localStorage.removeItem('myCat')
+```
+
+객체 데이터를 추가하고 읽고 삭제해보자
+```javascript
+  const user = {
+    name: 'joj',
+    age: 30
+  }
+
+  localStorage.setItem( 'user' , JSON.stringify(user))
+  console.log(JSON.parse(localStorage.getItem('user')))
+  localStorage.removeItem('user')
+```
+
+수정도 해보자!!!
+```javascript
+  const user = {
+    name: 'joj',
+    age: 30
+  }
+
+  const str = localStorage.getItem('user')
+  const obj = JSON.parse(str)
+  obj.age = 22
+  localStorage.setItem('user', JSON.stringify(obj))
+```
+
+### <span style="color:#febc68;font-weight:bold">session storage</span> 
+session storage의 데이터는 페이지 세션이 끝날 때, 즉 페이지를 닫을 때 데이터도 지워진다.
+
