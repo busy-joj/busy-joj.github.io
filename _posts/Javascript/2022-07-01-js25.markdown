@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 자바스크립트 - axios
+title: 자바스크립트 - axios, fetch (feat.비동기)
 date: 2022-07-01 16:45:10 +0900
 category: Javascript
 ---
