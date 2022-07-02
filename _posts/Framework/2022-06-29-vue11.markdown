@@ -8,7 +8,7 @@ category: Framework
 ### <span style="color:#febc68;font-weight:bold">slot</span> 
 ![slot 설명](../../../../public/img/slot.png)  
 상위 컴포넌트에 slot content, 보여주고자 하는 콘텐츠를 작성하고,  
-하위 컴포넌트에서 상위 제공 slot content가 렌더링되어야 하는 위치에 slot을 작성하여 사용합니다.
+하위 컴포넌트에서 상위 제공 slot content가 렌더링되어야 하는 위치에 slot을 작성하여 사용한다.
 
  ```html
   <!-- 부모 컴포넌트 = App.vue -->
@@ -68,7 +68,7 @@ category: Framework
   </template>
   ``` 
 
-  ### <span style="color:#febc68;font-weight:bold">이름을 갖는 slot</span>   
+### <span style="color:#febc68;font-weight:bold">이름을 갖는 slot</span>   
   하나의 컴포넌트에 여러 개의 슬롯 콘텐츠를 작성할 때 사용된다.
 slot에서 name을 통해 이름을 정해주고 이를 상위 컴포넌트에서 v-slot을 통해 사용할 수 있으며, 이름을 갖은 slot은 순서를 보장해줄 수 있다. 
   ```html
