@@ -30,21 +30,22 @@ category: Javascript
 ### <span style="color:#febc68;font-weight:bold">내보내기</span>  
 - Default exports : 이름을 지정하지 않아도 되는 방식으로 한 개의 js 파일에서 하나의 데이터만 내보내기 할 수 있다.
 ```javascript
-  export default function getType(data){
-    return Object.prototype.toString.call(data)
-  }
+    export default function getType(data){
+      return Object.prototype.toString.call(data)
+    }
 ```
-- named exports : 이름을 지정하는 방식으로, 이름이 지정된 데이터라면 몇 개든 제한없이 내보내기 할 수 있다.
-```javascript
-  export function random(){
-    return Math.floor(Math.random() * 10)
-  }
-  export const user = {
-    name: 'joj',
-    age : 85
-  }
-  
-```
+- named exports : 이름을 지정하는 방식으로, 이름이 지정된 데이터라면 몇 개든 제한없이 내보내기 할 수 있다.  
+
+    ```javascript
+    export function random(){
+      return Math.floor(Math.random() * 10)
+    }
+    export const user = {
+      name: 'joj',
+      age : 85
+    }
+    
+    ```
 
 
 하나의 자바스크립트 내에서 Default, Named exports 방식을 같이 기재할 수 있다.

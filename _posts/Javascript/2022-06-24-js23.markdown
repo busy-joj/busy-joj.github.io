@@ -31,7 +31,8 @@ category: Javascript
 
     const regexp2 = /^abc/gi;
     // /표현식/플래그
-```
+``` 
+
 ### <span style="color:#febc68;font-weight:bold">메소드</span> 
 - 정규식.test(문자열) : 일치 여부(Boolean) 반환
 - 문자열.match(정규식) : 일치하는 문자열의 배열(Array)반환
