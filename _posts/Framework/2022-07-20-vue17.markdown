@@ -1,0 +1,93 @@
+---
+layout: post
+title: Vue - 단위 테스트(Unit Test)
+date: 2022-07-20 21:37:12 +0900
+category: Framework
+---
+
+### <span style="color:#febc68;font-weight:bold">단위테스트(Unit Test)</span> 
+Unit Test = 단위 테스트  
+단위 테스트란 데이터(상태), 함수(메소드), 컴포넌트 등의 정의된 프로그램 최소 단위들이 독립적으로 정상 동작하는지 확인하는 방법  
+jest, Vue Test Utils라는 프레임워크를 사용하여 테스트를 진행한다.  
+
+### <span style="color:#febc68;font-weight:bold"> 환경구성 및 사용법</span> 
+- 테스트 환경을 구성해보자! 설치부터 시작! 
+```bash
+    npm i -D jest @vue/test-utils@next vue-jest@next babel-jest
+```  
+설치 후엔 jest.config.js 파일을 생성해서 구성옵션을 작성해보자!!  
+```javascript
+    module.exports = {
+        // 파일 확장자를 지정하지 않은 경우, Jest가 검색할 확장자 목록
+        // 일반적으로 많이 사용되는 모듈의 확장자를 지정한다.
+        moduleFileExtensions:[
+            'js',
+            'vue'
+        ],
+        // '~' 같은 경로 별칭을 매핑한다.
+        // '<rootDir>' 토큰을 사용해 루트 경로를 참조 할 수 있다.
+        moduleNameMapper:{
+            '^~/(.*)$' : '<rootDir>/src/$1'
+        },
+        // 테스트할 필요가 없기 때문에 아래에 작성된 경로에 일치된 모듈은 가지고 오지 않는다.
+        modulePathIgnorePatterns:[
+            '<rootDir>/node_modules',
+            '<rootDir>/dist'
+        ],
+        // jsdom 환경에 대한 URL을 설정한다.
+        testURL: 'http://localhost',
+        // 일치하는 파일의 변환 모듈을 지정한다
+        transform:{
+            '^.+\\.vue$' : 'vue-jest',
+            '^.+\\.js$' : 'babel-jest'
+        }
+    }
+```   
+만약 jest의 전역 변수가 에러로 인해 동작하지 않는다면, eslint 설정을 바꿔줘야 한다.  
+.eslintrs.js에 아래 내용을 기재하자!
+```javascript
+    env:{
+        jest: true
+    }
+```  
+작성한 테스트 코드가 정상적으로 작동하는지 확인하기 위해서 터미널에서 script를 동작시켜줘야 한다.  
+package.json에서 아래 내용을 기재하여 설정해주자.
+```javascript
+    // 기존에 작성되어 있던 scripts에 추가!
+  "scripts": {
+    "test:unit" : "jest --watchAll"
+  }
+```    
+
+설정은 끝났다! 
+tests 폴더 내부에 example.js 파일을 만들어서 간단한 테스트를 진행해보자!
+```javascript
+    // example.js
+    export function (num){
+        return num * 2
+    }
+```    
+간단히 만든 함수를 구성해놓은 테스트 환경에서 동작시키기 위해서 export를 이용하여 내보내주는 것이 매우 중요하다.
+다음으로 tests 폴더 내부에 example.test.js 파일을 만들어서 import를 이용해 함수를 가져온다.
+```javascript
+    // example.test.js
+    import { double } from './example'
+
+    // 패키지 내부에서 전역적으로 사용할 수 있는 함수
+    test('첫 테스트', () => {
+        // 테스트 통과
+        expect(123).toBe(123)
+        // 테스트 실패
+        expect(123).toBe('123')
+
+    })
+```    
+작성한 내용을 저장하고 터미널에 위에 설정해둔 script 명령을 사용한다.
+```bash
+    npm run test:unit
+```
+
+값을 비교해서 일치하면 통과, 불일치 하면 실패!
+
+### <span style="color:#febc68;font-weight:bold">E2E Test</span> 
+E2E(End to End) 테스트는 애플리케이션의 처음부터 끝까지 실제 사용자의 관점에서 사용 흐름을 테스트 하는 방법이다.
