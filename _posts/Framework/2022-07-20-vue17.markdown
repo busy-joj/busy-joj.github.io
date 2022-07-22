@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue - 단위 테스트(Unit Test)
+title: Vue - 단위 테스트(Unit Test) with Jest
 date: 2022-07-20 21:37:12 +0900
 category: Framework
 ---
@@ -89,5 +89,123 @@ tests 폴더 내부에 example.js 파일을 만들어서 간단한 테스트를 
 
 값을 비교해서 일치하면 통과, 불일치 하면 실패!
 
-### <span style="color:#febc68;font-weight:bold">E2E Test</span> 
-E2E(End to End) 테스트는 애플리케이션의 처음부터 끝까지 실제 사용자의 관점에서 사용 흐름을 테스트 하는 방법이다.
+### <span style="color:#febc68;font-weight:bold"> jest 전역함수</span> 
+- test('테스트 이름', callback fn) : 우리가 만들어 내는 테스트를 구분해주는 함수
+```javascript
+    test('테스트1', () => {
+        expect(123).toBe(123)
+    })
+```
+
+- describe() : 일종의 테스트 그룹, before 혹은 after 함수를 사용하기 위해서 사용
+```javascript
+    decribe('그룹1', () => {
+        test('테스트1', () => {
+            expect(123).toBe(123)
+        })
+        test('테스트2', () => {
+            expect(123).toBe(123)
+        })    
+    })
+```
+- beforeAll() : 그룹 내에 모든 테스트 전에 단 한번만 실행된다.
+- afterAll() : 그룹 내에 모든 테스트 후에 단 한번만 실행된다.
+```javascript
+    decribe('그룹1', () => {
+        beforeAll(() => {
+
+        })
+        afterAll(() => {
+
+        })        
+        test('테스트1', () => {
+            expect(123).toBe(123)
+        })
+        test('테스트2', () => {
+            expect(123).toBe(123)
+        })    
+    })
+```
+
+- beforeEach() : 그룹 내에 각각의 테스트 직전에  실행된다.
+- afterEach() : 그룹 내에 각각 테스트 후에  실행된다.
+```javascript
+    decribe('그룹1', () => {
+        //두번씩 실행
+        beforeEach(() => {
+
+        })
+        afterEach(() => {
+
+        })        
+        test('테스트1', () => {
+            expect(123).toBe(123)
+        })
+        test('테스트2', () => {
+            expect(123).toBe(123)
+        })    
+    })
+```
+
+### <span style="color:#febc68;font-weight:bold"> jest Matcher(일치도구)</span> 
+- expect(value)
+- .toBe(value) : 기대값이 원시형 데이터 사용
+- .toEqual(value) : 기대값이 참조형 데이터일 때 사용
+- .not 
+- .resolves
+- .rejects
+
+### <span style="color:#febc68;font-weight:bold"> 비동기 테스트</span> 
+1. 비동기 함수가 언제 종료되는지를 명시해주는 용도의 매개변수인 done을 이용해보자!  
+```javascript
+    describ('비동기 테스트', () => {
+        test('done', (done) => {
+            asyncFn().then(res => {
+                expect(res).toBe('done')
+                // 비동기 코드가 종료되는 부분에 done을 작성해주게 되면 done이 호출 되기 전까지 기다렸다가 테스트가 진행된다.
+                done()
+            })
+        })
+    })
+```
+2. 별도의 매개변수를 작성하는 것이 아니라 return 작성하여 반환해줌으로서 테스트가 비동기로 동작해야하는 것임을 인지할 수 있게 해준다.
+```javascript
+    describ('비동기 테스트', () => {
+        test('done', () => {
+            return asyncFn().then(res => {
+                expect(res).toBe('done')
+            })
+        })
+    })
+```
+
+3. 비동기 함수 자체를 비교값에 넣고 resolves를 이용해 비동기 함수가 완료될 때까지 기다린 후 테스트가 진행되도록 한다.
+```javascript
+    describ('비동기 테스트', () => {
+        test('resolves', () => {
+            // 테스트 환경에서는 정확히 얼마나 기다려야 하는지 모르기 때문에
+            // 꼭 return 으로 반환해주어야 한다.
+            return expect(asyncFn()).resolves.toBe('done')
+        })
+    })
+```
+
+4. 비동기의 대표주자 async/await
+```javascript
+    describ('비동기 테스트', () => {
+        test('async/await', async () => {
+            const res = await asyncFn()
+            expect(res).toBe('done')
+        })
+    })
+```
+
+* test() 함수는 최대 5초 동안만 진행하기 때문에 5초 이상의 테스트는 실패하게 된다. 그럴때 세번째 인수를 기입하여 테스트 시간을 늘려준다. 자주 사용하는 방법은 아니지만 알고는 있자!
+```javascript
+    describ('비동기 테스트', () => {
+        test('async/await', async () => {
+            const res = await asyncFn()
+            expect(res).toBe('done')
+        })
+    }, 7000)
+```
