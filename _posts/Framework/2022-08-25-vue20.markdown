@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue - v-slot과 slot-scope 사용법
+title: Vue - Tab과 content
 date: 2022-08-24 18:35:15 +0900
 category: Framework
 ---
