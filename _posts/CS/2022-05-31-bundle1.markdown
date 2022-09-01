@@ -1,0 +1,20 @@
+---
+layout: post
+title: IP - 공인IP와 사설IP
+date: 2022-09-01 22:19:13 +0900
+category: CS
+---
+
+## <span style="color:#97cab3;font-weight:bold">IP 주소?</span>
+IP란 인터넷 프로토콜(internet Protocol)의 약자로 인터넷상에서 데이터를 주고 받기 위한 통신 규약이다.
+정의를 고대로 이해하기 어렵지만,  
+실생활에서 우편을 보내기 위해 각각의 주소라는 규약을 만든 것,  
+전화를 주고 받기 위해 각자의 전화번호가 있는 것,  
+이메일을 주고 받기 위해 각자의 이메일이 있는 것과 같은 의미라고 보면 된다.
+
+이런 IP에는 공인 IP와 사설 IP가 있는데 이에 대해 자세히 알아보자!
+
+
+
+### <span style="color:#febc68;font-weight:bold">공인IP</span> 
+ 
