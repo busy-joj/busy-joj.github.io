@@ -16,5 +16,10 @@ IP란 인터넷 프로토콜(internet Protocol)의 약자로 인터넷상에서 
 
 
 
-### <span style="color:#febc68;font-weight:bold">공인IP</span> 
- 
+### <span style="color:#febc68;font-weight:bold">IPv4, IPv6?!?!</span> 
+일반적으로 IP주소라 하면 IPv4를 의미한다.  
+
+```html
+    172.00.000.0
+```
+IP는 일반적으로 위와 같이 마침표로 구분된 숫자가 있고,
