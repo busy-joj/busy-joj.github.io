@@ -1,75 +1,109 @@
 ---
 layout: post
-title: Vue - Tab과 content
+title: Vue - component와 is를 이용해 만드는 tab contents
 date: 2022-08-24 18:35:15 +0900
 category: Framework
 ---
 
-### <span style="color:#febc68;font-weight:bold">vue를 이용해서 tab&content를 만들어보자</span> 
-기존 slot애서 사용했던 name속성을 지정하여 여러 slot을 사용할 수 있도록 하는 named-slot과  
-하위 데이터를 상위 컴포넌트에서 사용하는 slot-scope가  
-v-slot 디렉티브가 새롭게 소개되면서, v-slot 하나로 위 기능을 사용할 수 있게 되었다.  
-고로, v-slot = named-slot + slot-scope 이다.  
-slot과 다른 v-slot의 사용법은 필히 templete 태그로 감싼 후 v-slot을 사용해야 한다는 것이다.    
+### <span style="color:#febc68;font-weight:bold">component</span> 
+component 태그는 Build-in Component로 동적 컴포넌트를 렌더링하기 위한 '메타 컴포넌트'이다. 
+is prop의 값으로 렌더링할 실제 컴포넌트가 결정된다.
 
-1. named-slot 표현법
+### <span style="color:#febc68;font-weight:bold">is</span> 
+is는 Build-in 특수속성으로 동적 컴포넌트 바인딩으로 사용한다.
+
+is의 값은 string 혹은 Component 이름이어야 하며,
+- 문자열(string)인 경우 HTML 태그 이름 또는 컴포넌트로 등록된 이름일 수 있다.
+- 컴포넌트의 정의에 직접 바인딩될 수도 있다.  
+
+
+### <span style="color:#febc68;font-weight:bold">Example</span> 
 ```javascript
-// 하위 컴포넌트 ContentTop.vue 파일
-<templete>
-    <div class="content-top">
-      <div class="container">
-        <slot name="h2"></slot>
+    //등록된 이름으로 렌더링
+    <script>
+    import Foo from './Foo.vue'
+    import Bar from './Bar.vue'
 
-        <slot name="content"></slot>
-      </div>
-    </div>
-</templete>
+    export default {
+        components: { Foo, Bar },
+        data() {
+            return {
+            view: 'Foo'
+            }
+        }
+    }
+    </script>
 
-// 상위 컴포넌트 Main.vue 파일
-<template>
-    <ContentTop>
-      <template v-slot:h2>
-        <h2>vue</h2>
-      </template>
-      <template v-slot:content>
-        <p>반갑습니다.</p>
-      </template>
-    </ContentTop>
+    <template>
+        <component :is="view" />
+    </template>
 ```
-* v-slot:default는 name 속성을 붙이지 않은 영역에 표현된다.
 
-
-2. slot-scope 표현법
-하위에서 사용했던 slot의 name=""로 감싸진 태그의 함수, 변수 모두 지정한 name에 담아서 가져온다.
 ```javascript
-// 하위 컴포넌트 ItemList.vue 파일
-<templete>
-    <div class="list-top">
-        <ul>
-            <template v-for="row in list">
-                <li>
-                    <slot name="itemList" :row="row"></slot>
-                </li>                
-            </template>
-        </ul>
-    </div>
-</templete>
+    //정의에 따른 렌저링
+    <script setup>
+        import Foo from './Foo.vue'
+        import Bar from './Bar.vue'
+    </script>
 
-// 상위 컴포넌트 List.vue 파일
-<templete>
-    <ItemList>
-        <template v-slot:itemList="itemList">
-            {{ itemList.row.name }}
-        </template>
-    </ItemList>
-    <div class="list-top">
-        <ul>
-            <template v-for="row in list">
-                <li>
-                    <slot name="itemList" :row="row"></slot>
-                </li>                
-            </template>
-        </ul>
-    </div>
-</templete>
+    <template>
+        <component :is="Math.random() > 0.5 ? Foo : Bar" />
+    </template>
 ```
+
+```javascript
+    //HTML 엘리먼트 렌더링
+    <component :is="href ? 'a' : 'span'"></component>
+```
+
+### <span style="color:#febc68;font-weight:bold">Tab content를 만들어보자!</span> 
+```javascript
+    <template>
+        <BasicTab
+          v-for="(tab, i) in tabs"
+          :key="i"
+          :tab="tab"
+          @click="activeTab(tab,i)"
+          :class="{active : tab.isActive}"
+        >
+          {{ tab.text }}
+        </BasicTab>
+    </template>
+
+    <template>
+      <component :is="currentView"></component>
+    </template>
+    
+    <script>
+    import Foo from './Foo.vue'
+    import Bar from './Bar.vue'
+
+    export default {
+        components: { Foo, Bar },
+        data() {
+            return {
+            currentView: 'Foo'
+            }
+        },
+        methods:{
+            activeTab(tab, i){
+                const seleted = i
+                this.tabs.forEach((tab, i)=>{
+                    if(i === seleted){
+                        tab.isActive = true
+                    }else{
+                        tab.isActive = false
+                    }
+                })
+                this.currentView = tab.content
+            }
+        }
+    }
+    </script>
+```
+javascript로 틈만 나면 만들던 tab contents가 vue에서는 어찌나 어렵게 느껴지던지...  
+근데 component와 is를 익히고 나니 세~~~상 편하게 만들 수 있게 되었다...   
+역시 아는 것이 힘!!ㅎㅎ
+
+<a href="https://v3-docs.vuejs-korea.org/api/built-in-special-elements.html#component" title="vue component" style="color:#f27c88;">출처</a> 
+
