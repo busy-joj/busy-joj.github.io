@@ -28,3 +28,11 @@ typescript에서의 object는 Primitive type이 아닌 것을 나타내고 싶�
     let list:number[] = [1,2,3]
     let list:Array<number> = [1,2,3]
 ```
+
+### <span style="color:#febc68;font-weight:bold">Tuple</span>
+다른 타입의 요소를 모아놓은 자료형
+!! 배열 안에 있는 요소가 다른 타입일 수 있으나, 각 인덱스 타입도 불변이기에 값을 할당할 때 인덱스 타입과 같은 타입의 값을 입력해야한다.
+```javascript
+    let x:[string, number];
+```
+
