@@ -36,3 +36,18 @@ typescript에서의 object는 Primitive type이 아닌 것을 나타내고 싶�
     let x:[string, number];
 ```
 
+### <span style="color:#febc68;font-weight:bold">any</span>
+의미 그대로 어떤 타입이든 가능한 타입으로
+활용성,융통성이 좋아 편리하지만,
+너무 남발하게 되면 타입의 안전성을 잃게 되고   
+컴파일 타임에서 타입체크가 정상적으로 이워지지 않기 떄문에  
+최대한 쓰지 않는 게 좋다.  
+
+```javascript
+    function returnAny(msg):any {
+        console.log(msg)
+    }
+
+    const any1 = returnAny('아무거나 리턴');
+```
+
