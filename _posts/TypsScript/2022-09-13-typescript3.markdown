@@ -51,3 +51,27 @@ typescript에서의 object는 Primitive type이 아닌 것을 나타내고 싶�
     const any1 = returnAny('아무거나 리턴');
 ```
 
+### <span style="color:#febc68;font-weight:bold">unknown</span>
+any로 인해 생길 수 있는 타입의 불안전성을 보완하기 위한 타입이다.
+동적 콘텐츠(예를 들어 API)와 같이 타입을 아직 알 수 없는 변수를 작성해야할 때  
+any를 사용할 수도 있지만, unknown 타입을 작성하여 변수의 타입이 무엇이든 될 수 있음을 알려줄 수 있다.
+```javascript
+    declare const maybe : unknown;
+    
+    const aNumber: number = maybe
+
+    if(maybe === true){
+        // error X
+        const aBoolean: boolean = maybe;
+        // error O
+        const aString: string = maybe;
+    }
+    if(typeof maybe === "string"){
+        // error X
+        const aString: string = maybe;
+        // error O
+        const aBoolean: boolean = maybe;
+    }
+```
+즉, any와 달리 unknown은 타입을 확정지어준 후에 사용할 수 있고,   
+확정지은 타입과 다른 타입을 할당하면 에러가 나기 때문에 보다 안전하게 사용할 수 있다!
