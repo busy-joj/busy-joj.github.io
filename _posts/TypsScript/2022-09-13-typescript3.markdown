@@ -75,3 +75,28 @@ any를 사용할 수도 있지만, unknown 타입을 작성하여 변수의 타�
 ```
 즉, any와 달리 unknown은 타입을 확정지어준 후에 사용할 수 있고,   
 확정지은 타입과 다른 타입을 할당하면 에러가 나기 때문에 보다 안전하게 사용할 수 있다!
+
+### <span style="color:#febc68;font-weight:bold">never</span>
+never 타입은 값의 공집합이기 때문에 any타입의 값을 포함해 어떤 값도 가질 수 없다.  
+
+그렇다면 never 타입은 왜 필요할까?!  
+숫자 중 0처럼 아무것도 없음을 나타낼수 있는 타입이 필요했기 때문이다.  
+
+never 타입을 많이 사용하지는 않지만, 적절하게 사용될 때가 있다.
+대표적으로는 허용할 수 없는 함수 매개변수에 제한을 가하는 경우  
+혹은 switch, if-else문의 상황을 보장하는 용도로 사용된다.
+```javascript
+    function error(msg:string):never{
+        throw new Error(msg)
+    }
+
+    function fail(){
+        return error("failed")
+    }
+
+    function infiniteLoop():never {
+        while (true) {
+            
+        }
+    }
+```
