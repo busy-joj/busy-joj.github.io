@@ -103,3 +103,5 @@ never 타입을 많이 사용하지는 않지만, 적절하게 사용될 때가 
 
 ### <span style="color:#febc68;font-weight:bold">void</span>
 void는 결과 값을 반환하지 않는 함수에 설정한다.
+
+![typescript type](../../../../public/img/typescript.png)
