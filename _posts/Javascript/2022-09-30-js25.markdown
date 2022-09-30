@@ -1,0 +1,69 @@
+---
+layout: post
+title: 자바스크립트 - 외부영역 클릭시 레이어팝업을 닫아보자!!
+date: 2022-09-30 21:59:11 +0900
+category: Javascript
+---
+
+임의 영역 클릭시 해당 요소가 display: none 되게 해달라는 요청이 들어왔다.
+오호~ 한번 알아보자!
+
+### <span style="color:#febc68;font-weight:bold">mouseup event</span> 
+ 
+< 요청사항 >
+1. .btn-toggle을 클릭했을 때 .show-item이 나타나야하고,  
+2. .btn-toggle을 다시 클릭했을 때 그리고 .btn-toggle이 아닌 영역을 눌렀을 때도 .show-item을 숨겨야 한다.
+
+구조는 아래와 같다.
+```html
+  <div class="container">
+    <botton class="btn-toggle">클릭</botton>
+    <div class="show-item">
+      <span>클릭했군! 짜잔!</span>
+    </div>
+</div>
+```
+
+.btn-toggle을 클릭할 때 .on을 추가,삭제 하면서 보였다 안보였다는 구현할 것이다.
+```css
+  .show-item{display:none;}
+  .show-item.on{display:block;}
+```
+
+```javascript
+  	$('.btn-toggle').click(function(){
+		$('.show-item').toggleClass('on');
+		return false;
+	})
+
+	$(document).mouseup(function (e){
+		var LayerPopup = $('.show-item');
+    //조건문 해석 : target.length가 0 이란 것은 .show-item이 클릭되지 않았다는 의미(=.show-item을 제외한 영역을 클릭했다는 의미)!
+		if(LayerPopup.has(e.target).length === 0){
+			LayerPopup.removeClass("on");
+		}
+	});
+```
+<span style="color:#f27c88;">mouseup</span>event는 마우스 포인터를 요소에 올려놓고 마우스 버튼을 눌렀다 뗄 때 발생하고, 모든 HTML요소에서 이벤트를 받을 수 있다.
+덕분에 손쉽게 구현 완료!!  
+
+### <span style="color:#febc68;font-weight:bold">keydown event</span>   
+알아본 김에 하나 더!!
+같은 기능이지만, ESC 누름으로 제어해보자!
+
+```javascript
+  	$('.btn-toggle').click(function(){
+		$('.show-item').toggleClass('on');
+		return false;
+	})
+
+	$(document).keydown(function(e){
+	//keyCode 구 브라우저, which 현재 브라우저
+    var code = e.keyCode || e.which;
+ 
+    if (code == 27) { // 27은 ESC 키번호
+        $('.show-item').removeClass("on");
+    }
+});
+```  
+아주 간단하다!! 잘 기록해두었다가 노련하게 사용해야겠다:)
