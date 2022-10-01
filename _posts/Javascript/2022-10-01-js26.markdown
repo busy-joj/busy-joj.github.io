@@ -1,0 +1,43 @@
+---
+layout: post
+title: 자바스크립트 - 외부영역 클릭시 레이어팝업을 닫아보자!!
+date: 2022-10-01 12:28:07 +0900
+category: Javascript
+---
+스크롤 시 특정요소가 상단에 도달했을 때, absolute로 고정시켰다가
+스크롤이 원래 특정요소의 원래 위치에 도달했을 때 다시 제자리로 돌려놓아보자
+
+내가 시도했던!!
+```javascript
+ 	// 서브탭 고정
+	
+	$(window).scroll(function(){
+		const offset_tab = $('.item').offset();
+		const wT = $(window).scrollTop();
+		const $t = $('.item');
+		if( offset_tab.top && wT >= offset_tab.top  ){
+			$t.addClass('sticky');
+		} else {
+			$t.removeClass('sticky');
+		}
+	}) //END window scroll
+ ```
+ 틀린게 없다고 생각했다... 근데 .sticky가 add 되기는 하지만 remove가 되지 않는게 문제 였다.
+ console.log를 찍어보니 .sticky가 붙고 나서부터 .item의 offset이 변하는게 아닌가...;;;;;;
+
+ 그래서 .item의 offset을 scroll 이벤트 밖에 선언했다.
+ ```javascript
+ 	// 서브탭 고정
+	const offset_tab = $('.item').offset();
+	$(window).scroll(function(){
+		const wT = $(window).scrollTop();
+		const $t = $('.item');
+		if( offset_tab.top && wT >= offset_tab.top  ){
+			$t.addClass('sticky');
+		} else {
+			$t.removeClass('sticky');
+		}
+	}) //END window scroll
+ ```  
+ 아주 잘 작동된다!!!  
+ 스크롤 안에 선언하면 스크롤이 될때마다 offset 값을 다시 저장하게 되어 실행되지 않았던것!! 오마이갓뜨!!ㅎㅎ
