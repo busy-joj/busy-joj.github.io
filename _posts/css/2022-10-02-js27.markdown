@@ -1,0 +1,20 @@
+---
+layout: post
+title: CSS - position sticky
+date: 2022-10-01 12:28:07 +0900
+category: css
+---
+
+스크롤 위치에 따라 특정요소를 고정했다가 제자리로 놓았다 하는 UI를 자주 구현하게 된다.  
+그 때마다 javascript를 이용했는데, 
+css 만을 이용해서 간단히 구현할 수 있다!!
+
+그건 position:sticky를 이용하면 된다!
+
+```css
+	item{position:sticky;top:0px;}
+```
+ 
+css 속성으로 position:sticky를 주고 어느지점에서 고정될건지 정해주면 끝!!  
+정말 간단하다.  
+단, 부모나 조상 요소에 overflow:hidden 이 있는 경우 작동되지 않으니 주의해야한다!!
