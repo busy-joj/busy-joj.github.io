@@ -1,0 +1,65 @@
+---
+layout: post
+title: 자바스크립트 - 특정 영역 외 클릭시 이벤트!!!!
+date: 2022-10-05 22:34:42 +0900
+category: Javascript
+---
+
+버튼 클릭시 div에 클래스 active를 toggle + 해당 div 외 영역 클릭시 active를 제거하여 영역 숨기기!!
+
+방법 1. 출처 : codepen
+```javascript
+ 	hide = true;
+	$('body').on("click", function () {
+		if (hide) $('.info_content').removeClass('open');
+		hide = true;
+	});
+
+	// add and remove .active
+	$('body').on('click', '.btn', function () {
+
+		var self = $(".info_content");
+
+		if (self.hasClass('open')) {
+			$('.info_content').removeClass('open');
+			return false;
+		}
+
+		$('.info_content').removeClass('open');
+
+		self.toggleClass('open');
+		hide = false;
+	});
+ ```
+ 작동은 잘된다... 그러나 뭔가!!!! 효율적이지 못한 코드라는 느낌이 들었다.    
+   
+
+ 방법 2. 구글링 해보았다!
+ ```javascript
+ 	 $('#wrap').click(function(e){
+      if( $('.div').has( e.target ).length === 0 ){
+         $('.div').removeClass('active');
+      }
+   });
+
+   // add and remove .active
+   $('.btn').click(function(){
+      $(".div").toggleClass('active');
+   });
+ ```  
+ div영역이 아닌 부분을 클릭했을 때 숨김처리를 잘 작동하고, 버튼을 눌러서 div영역을 보이기는 작동이 되지만 다시 버튼을 눌러 div영역 숨김이 안된다.  
+ 
+ 방법 2. 선배님과 머리를 맞대보았다.
+ ```javascript
+	$('#wrap').click(function(e){
+		if( !$('.btn').has( e.target ).length && !$('.div').has( e.target ).length ){
+			$('.div').removeClass('active');
+		}
+	});
+
+	//add and remove .active
+	$('.btn').click(function(){
+		$(".div").toggleClass('active');
+	});
+ ```    
+ 완전히 잘 작동한다!!! 
