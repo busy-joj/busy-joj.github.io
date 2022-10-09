@@ -5,5 +5,32 @@ date: 2022-10-06 22:58:41 +0900
 category: Javascript
 ---
 
-생각보다 간단하다!!  
 
+PIP는 Picture in Picture으로 브라우저에서 독립적으로 GUI 화면위에 또다른 화면을 제공하는 기능이다!  
+
+이를 구현해야했엇는데, 뭔가 JS로 엄청 뚝딱 뚝딱해야할거 같아서 살짝 겁먹었엇다..;;  
+
+그러나!!
+생각보다 간단했다!!  
+재생되고 있는 플레이어를 스크롤에 따라 position값을 달리해주기만 하면 간단하게 해결 되었다.  
+
+```html
+    <div class="player-wrap">
+        <div class="player-box">
+            <div class="player"></div>
+        </div><!-- //.player-box -->
+    </div>
+```
+
+위와 같은 구조에 css는!!
+```css
+    .player-wrap{position:relatvie;aspect-ratio:16/9;overflow:hidden;}
+    .player-box{position:relative;width:100%;}
+    .player-box.pip{position:fixed;aspect-ratio:16/9;width:400px;bottom:30px;right:30px;z-index:100;}
+```  
+
+스크롤이 원하는 위치에 왔을 때 addClass('pip'), removeClass('pip')를 해주면 된다!!  
+쏘 씸플!!:)  
+주의해야할 것은 최상위 요소 .player-wrap가 height를 가지고 있어야 한다는 것이다!!  
+그래야 자식요소인 .player-box를 fixed로 고정해도 레이아웃에 영향이 없다!  
+height를 각각 주기 번거로우니 aspect-ratio를 사용하는것도 간편한 방법이다!
