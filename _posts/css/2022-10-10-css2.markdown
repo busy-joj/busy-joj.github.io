@@ -1,0 +1,42 @@
+---
+layout: post
+title: CSS - 텍스트 흐름 효과
+date: 2022-10-10 17:36:21 +0900
+category: css
+---
+
+TV 시청하다 보면 하단에 공지 및 안내 자막이 흐르는 것을 본적이 있을 것이다.  
+플레이어 창에서 같은 기능을 구현해달라는 요청이다.  
+js로 구현할지, css로 구현할지 고민을 하다가 제일 간단한 방법을 찾기위해 검색을 했다!
+  
+1. html의 <MarQuee></MarQuee>   
+```html
+	<p>
+		<MARQUEE>이 텍스트가 좌우로 흐릅니다.</MARQUEE>
+		<!-- 움직이는 텍스트 -->
+    </p>
+```  
+매우 간단하게는 html에서 marquee 태그를 사용하면 된다.  
+marquee 태그의 속성으로는  
+- bgcolor는 스크롤의 배경색상을 지정
+- width / height는 스크롤의 크기나 비율을 정해줄 수 있다.
+- direction은 스크롤의 움직임 방향(up,down,left,right)을 정해주는 속성
+- behavior이라는 속성을 주면 스크롤이 무한루프로 계속 반복하게 된다.
+- loop속성을 주게되면 loop를 준 횟수 만큼 스크롤이 돈다.
+- scrollamount과 scrolldelay은 둘다 스크롤이 움직이는 속도
+- hspace / vspace은 스크롤의 여백을 주는 기능인데 잘 사용하지는 않는다.  
+
+그러나!! <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/marqueea" title="출처로 이동" style="color:#f27c88;">MDN</a>에 marquee 태그의 사용을 더이상 추천하지 않으며, 웹표준에서 제거 되었고 삭제되지 않은 건 호환성의 문제로 인해 남겨 놓았다는 것!!  
+다른 방법을 찾아야 한다!!  
+
+2. css의 animation
+다음으로 간단한 방법은 css에서 animation으로 효과를 주는것이다.  
+```css
+	@keyframes marquee {
+	  	from   { transform: translate(0%);}
+  		99%,to { transform: translate(-100%);}
+	}
+```  
+
+  
+  흐르게 하는 자막 요소가 하나라면 animation으로 간단하게 해결!!
