@@ -1,0 +1,42 @@
+---
+layout: post
+title: 자바스크립트 - 옵셔널 체이닝(Optional Chaining)
+date: 2022-10-10 21:31:20 +0900
+category: Javascript
+---  
+
+## <span style="color:#97cab3;font-weight:bold">옵셔널 체이닝</span>
+
+옵셔널 체이닝은 스펙에 추가된 지 얼마 되지 않은 따끈따끈한 문법으로,  
+?.을 사용하여 프로포티가 없는 중첩 객체를 에러 없이 안전하게 접근 할 수 있다.
+
+```javascript
+    var user = {
+        name : 'joj',
+        age : 20
+    }
+
+    user.age // 20 출력  
+    user?.age 
+```  
+
+?.은 .과 같은 체이닝 역할을 하는데 왼쪽(변수)이 null이나 undefined이면 오른쪽(프로퍼티)로 연결해주지 않고, undefined를 반환한다.   
+
+### <span style="color:#febc68;font-weight:bold">어디에 활용할 수 있을까?</span>
+중첩된 object의 특정 프로퍼티에 접근할 때 reference 에러 없이 안전하게 접근하여 사용할 수 있다!!   
+예시를 보자!!
+```javascript
+    var user = {
+        name : 'joj'
+        // 'age'프로퍼티가 없는 사용자
+    }
+
+    alert( user.age?.value ); // undefined, 에러가 발생하지 않음
+```  
+만일  alert( user.age ); 였다면 ?가 없어도 undefined를 출력했을 것이다. 그러나 체이닝이 2개 이상이 되면 에러가 날 수 있다.  
+그러나 옵셔널 체이닝을 남용해서는 안된다.  
+남용은 에러를 조기에 발견하지 못하게 하여 디버깅을 어렵게 만들수 있기 때문이다.  
+위의 예시에서 user를 변수로 선언했기 때문에 user.age?.value; 이렇게 작성했을 때 user에 값이 할당되지 않았는지 바로 알아 차릴 수 있다.  
+
+<a href="https://ko.javascript.info/optional-chaining" title="출처로 이동" style="color:#f27c88;">더욱 자세한 내용 확인하기!</a>
+  
