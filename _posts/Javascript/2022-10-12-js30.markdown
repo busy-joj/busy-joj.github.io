@@ -1,0 +1,11 @@
+---
+layout: post
+title: 자바스크립트 - nullish 병합(nullish coalescing)
+date: 2022-10-10 21:31:20 +0900
+category: Javascript
+---  
+
+## <span style="color:#97cab3;font-weight:bold">nullish 병합</span>
+
+nullish 병합연산자도 옵셔널 체이닝과 같이 스펙에 추가된 지 얼마 되지 않은 따끈따끈한 문법으로,  
+??을 사용하면 짧은 문법으로 여러 피연산자 중 그 값이 확정되어있는 변수를 찾을 수 있다.
