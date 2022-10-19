@@ -1,0 +1,10 @@
+---
+layout: post
+title: apache(아파치) - httpd.conf 설정 파일
+date: 2022-09-01 22:19:13 +0900
+category: CS
+---
+
+## <span style="color:#97cab3;font-weight:bold">/etc/httpd/conf/httpd.conf</span>
+아파치(Apache)의 메인 설정 파일이다. apache 설치시 자동적으로 /etc/httpd 경로에 설치가 되어지며 /etc/httpd/conf/경로에 httpd.conf 설정 파일이 존재한다.  
+시작해보자!!ㅎㅎ
