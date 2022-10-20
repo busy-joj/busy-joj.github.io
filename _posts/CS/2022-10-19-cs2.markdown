@@ -8,3 +8,12 @@ category: CS
 ## <span style="color:#97cab3;font-weight:bold">/etc/httpd/conf/httpd.conf</span>
 아파치(Apache)의 메인 설정 파일이다. apache 설치시 자동적으로 /etc/httpd 경로에 설치가 되어지며 /etc/httpd/conf/경로에 httpd.conf 설정 파일이 존재한다.  
 시작해보자!!ㅎㅎ
+
+### <span style="color:#febc68;font-weight:bold">ServerRoot</span>  
+- 아파치 Root 홈 디렉토리 경로이며, 절대경로로 설정해줘야 한다.  
+- 설치시 기본적으로 /etc/httpd 경로로 지정된다.
+
+### <span style="color:#febc68;font-weight:bold">ServerName</span>  
+- 서버의 도메인을 입력한다.  
+- 클라이언트에게 보여줄 호스트 이름 및 포트를 지정한다.  
+- DNS 주소가 등록되어있지 않으면 IP주소로 설정한다.
