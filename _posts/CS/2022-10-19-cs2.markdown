@@ -17,3 +17,8 @@ category: CS
 - 서버의 도메인을 입력한다.  
 - 클라이언트에게 보여줄 호스트 이름 및 포트를 지정한다.  
 - DNS 주소가 등록되어있지 않으면 IP주소로 설정한다.
+
+### <span style="color:#febc68;font-weight:bold">DocumentRoot</span>  
+- 아파치 서버의 웹문서 경로 및 웹 페이지의 루트를 지정한다.  
+- 마지막 경로엔 '/' 를 지정하지 않는다.
+- DocumentRoot 라인 이후에 <directory> 지시자가 작성된다.
