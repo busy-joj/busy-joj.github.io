@@ -1,0 +1,26 @@
+---
+layout: post
+title: CSS - color picker 바를 만들어보자!
+date: 2022-10-24 18:00:10 +0900
+category: css
+---
+
+어드민에 들어가는 색상 값 조절바를 만들어보자! 
+input range 타입을 사용해보자!
+
+```html
+	<input name="hue" type="range" min="1" max="300" value="130" class="slider hue" />
+```
+
+```css
+	.hue {
+		background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+		margin-left: auto;
+		margin-right: auto;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		border: 2px white solid;
+		border-radius: 20px;
+	}
+```
