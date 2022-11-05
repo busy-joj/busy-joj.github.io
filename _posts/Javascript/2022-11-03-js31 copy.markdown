@@ -1,0 +1,47 @@
+---
+layout: post
+title: 자바스크립트 - 스크롤 애니메이션 구현하기
+date: 2022-10-24 18:00:10 +0900
+category: Javascript
+---
+
+웹페이지에 스크롤시 동작하는 애니메이션을 scroll event를 사용하지 않고 구현해보자!   
+
+### <span style="color:#febc68;font-weight:bold">new IntersectionObserver()</span>   
+브라우저별 오차를 걱정하지 않아도 되는 방법이 있다!!  
+
+```css
+	div{
+		text-align:center;
+		opacity: 0;
+		transition: all 0.5s;
+	}
+```
+
+```html
+	<div><h1>scroll event 사용하지 않고,</h1></div>
+	<div><h1>스크롤시 동작하는</h1></div>
+	<div><h1>애니메이션을</h1></div>
+	<div><h1>구현해보자</h1></div>
+```  
+
+```javascript
+	let observer = new IntersectionObserver((e)=>{
+		e.forEach((box)=>{
+			if(box.isIntersecting){
+				// 감시 중인 요소가 화면에 등장할 때
+				box.target.style.opacity = 1;
+			}else{
+				// 감시 중인 요소가 화면에 퇴장할 때
+				box.target.style.opacity = 0;
+			}
+			
+		})
+	})  
+
+	let div = document.querySelectoerAll('div')
+	//html 요소의 화면에 등장하는지 감시
+	observer.observe(div[0])
+```  
+
+너무나도 손쉽게 구현이 끝났다. 라이브러리 혹은 scroll event로 고생 덜해도 될거 같은...?
