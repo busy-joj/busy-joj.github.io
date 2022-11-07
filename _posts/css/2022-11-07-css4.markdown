@@ -1,0 +1,50 @@
+---
+layout: post
+title: CSS - flex 내 가변 요소
+date: 2022-11-07 15:24:27 +0900
+category: css
+---
+
+![flex예시](../../../../public/img/css-flex.png)
+
+부모div(초록색 보더) 안에 2개의 div요소가 있다.  
+div1은 상단에 위치하며 height값이 고정이고, div2는 하단에 위치하여 나머지 공간을 채운다.  
+
+```html
+	<div class="flex">
+		<div class="div1"></div>
+		<div class="div2"></div>
+	</div>
+```
+```css
+	.flex {
+		display:flex;
+		flex-direction:column;
+		height:100%;
+	}
+	.flex .div1{height:100px;}
+	.flex .div2{flex-grow:1;}
+```  
+
+flex를 이용하여 손쉽게 해결한듯 했다.  
+근데 문제는 div2의 컨텐츠 양이 많아지면, 부모를 넘어갔다..흠...    
+
+해결방법1. 부모 요소에 overflow:hidden - 부모의 크기에 맞게 가릴 수는 있으나, 넘친 div2의 컨텐츠를 모두 볼 수 없다.  
+해결방법2. 가변 자식 요소에 max-height:calc(100vh-00px) - 결국엔 정확한 수치를 기입해야 하므로, 반응형을 생각했을 때 좋은 방법은 아닌거 같다.  
+해결방법3. 가변 자식 요소에 min-height:0;  
+
+flex 아이템의 min-height, min-width 초기값은 auto이다. 이 값은 초기값인 flex-basis:auto보다 
+우선적으로 적용되어 flex 아이템의 비대화에 의해 flex 컨테이너 영역을 벗어나게 되는것이다.  
+그래서 min-height,min-width:0 으로 지정하면, flex-basis:auto가 우선 적용되어 아이템이 영역을 벗어나지 않게 된다.
+그 후 넘치는 콘텐츠는 scroll을 주어 보여지게 한다!!!
+
+```css
+	.flex {
+		display:flex;
+		flex-direction:column;
+		height:100%;
+	}
+	.flex .div1{height:100px;}
+	.flex .div2{flex-grow:1;min-height:0;}  
+```  
+깔끔:)
