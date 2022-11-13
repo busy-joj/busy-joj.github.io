@@ -52,4 +52,3 @@ Intersection observer는 요소가 뷰포트에 보이는지 구별하는 기능
 - takeRecords() : IntersectionObserverEntry 객체의 배열을 반환한다. (일반적인 상황에서 잘 사용하지 않는다.)  
 <br>
 <br>
-너무나도 손쉽게 구현이 끝났다. 라이브러리 혹은 scroll event로 고생 덜해도 될거 같은...?
