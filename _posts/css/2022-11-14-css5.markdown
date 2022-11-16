@@ -7,3 +7,10 @@ category: css
 
 ## <span style="color:#97cab3;font-weight:bold">transform-style </span>
 transform-style는 자식 요소를 3D공간에 배치할지 2D평면에 배치할지를 지정하는 속성이다.
+기본값: flat
+
+상속여부: X
+
+애니효과: X
+
+CSS버전: CSS3
