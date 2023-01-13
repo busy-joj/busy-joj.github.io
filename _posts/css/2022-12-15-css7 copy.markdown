@@ -4,22 +4,94 @@ title: CSS - select의 placeholder
 date: 2022-12-15 23:10:12 +0900
 category: css
 ---
-input 태그에 placeholder를 넣듯이  
-select 태그에도 placeholder를 넣어보자  
 
-```html
-  <select>
-    <option value="" disabled selected hidden>placeholder</option>
-    <option value="1">one</option>
-    <option value="2">two</option>
-    <option value="3">three</option>
-  </select>
+
+```javascript
+ // swiper 슬라이드 - 리뷰, 인터뷰, 포토
+    var SwiperTop = [];
+    var SwiperThm = [];
+    $('.slide-top').each(function(i){
+        var $this = $(this)
+        var slideTopOpt = {};
+
+        if ( $this.hasClass('auto-height') ) {
+            slideTopOpt = {
+                spaceBetween: 10,
+                autoHeight : true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                allowTouchMove: false,
+                slideToClickedSlide: true,
+                on: {
+                    slideChange: function () {
+                        var $slide = $(this.$el)
+                        var $i = this.realIndex
+                        var $t = $slide.siblings('.slide-thumbs').find('.sb-cont-item')
+                        $t.removeClass('active')
+                        $t.eq($i).addClass('active')
+                    }
+                }
+            }
+        } else {
+            slideTopOpt = {
+                spaceBetween: 10,    
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                slideToClickedSlide: true,
+                allowTouchMove: false,
+                on: {
+                    slideChange: function () {
+                        var $slide = $(this.$el)
+                        var $i = this.realIndex
+                        var $t = $slide.siblings('.slide-thumbs').find('.sb-cont-item')
+                        $t.removeClass('active')
+                        $t.eq($i).addClass('active')
+                    }
+                }
+            }
+        }
+        SwiperTop[i] = new Swiper('.slide-top', slideTopOpt);
+    })
+
+    $('.slide-thumbs').each(function(i){
+        var $this = $(this)
+        var slideThmOpt = {};
+
+        $this.find('.sb-cont-item:eq(0)').addClass('active')
+        if ( $this.hasClass('auto-width') ) {
+            slideThmOpt = {
+                spaceBetween: 12,
+                slidesPerView: "auto",
+                touchRatio: 0.2,
+                allowTouchMove: false,
+                slideToClickedSlide: true
+            }
+        } else {
+            slideThmOpt = {
+                slidesPerView: 'auto',
+                spaceBetween: 12,   
+                allowTouchMove: false,
+                slideToClickedSlide: true,
+                centeredSlides:true,
+                centeredSlidesBounds:true
+            }
+        }
+        SwiperThm[i] = new Swiper('.slide-thumbs', slideThmOpt);
+    })
+
+    // 슬라이드 controller
+    const swiperTop = document.querySelectorAll('.slide-top');
+    const swiperThm = document.querySelectorAll('.slide-thumbs');
+    
+    for(var i = 0; i < swiperTop.length; i++){
+        let itemTop = swiperTop[i].swiper
+        let itemThm = swiperThm[i].swiper
+        itemTop.controller.control = itemThm;
+        itemThm.controller.control = itemTop;
+    }
+
 ```
-이제 placeholder만 글씨 색상을 바꿔주자!
-```css
-  select:not(:focus):invalid {
-    color: #909090;
-  }
-```
-참 쉽고, 간단하다;;;;  
-js를 사용하는 방법까지 다양하던데 css한줄이면 간단하게 해결! 
