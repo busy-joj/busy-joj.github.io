@@ -5,6 +5,7 @@ date: 2022-12-15 23:10:12 +0900
 category: css
 ---
 
+슬라이드 연동을 해보자!
 
 ```javascript
  // swiper 슬라이드 - 리뷰, 인터뷰, 포토
