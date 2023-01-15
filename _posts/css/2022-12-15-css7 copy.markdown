@@ -6,6 +6,8 @@ category: css
 ---
 
 슬라이드 연동을 해보자!
+슬라이드 연동은 사실 쉽다!
+controller를 이용하면 된다~
 
 ```javascript
  // swiper 슬라이드 - 리뷰, 인터뷰, 포토
