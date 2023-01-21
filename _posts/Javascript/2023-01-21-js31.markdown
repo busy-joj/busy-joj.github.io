@@ -1,8 +1,8 @@
 ---
 layout: post
-title: CSS - select의 placeholder
-date: 2022-12-15 23:10:12 +0900
-category: css
+title: js - select의 placeholder
+date: 2023-01-21 10:43:55 +0900
+category: Javascript
 ---
 
 슬라이드 연동을 해보자!
