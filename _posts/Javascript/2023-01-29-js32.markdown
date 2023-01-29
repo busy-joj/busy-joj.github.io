@@ -1,0 +1,52 @@
+---
+layout: post
+title: js - swiper with 동영상 (재생,멈춤 제어하기)
+date: 2023-01-29 22:04:52 +0900
+category: Javascript
+---
+
+
+```javascript
+ // swiper 슬라이드 - 리뷰, 인터뷰, 포토
+   var more_slide = new Swiper('.banner-video.slider', {
+        loop:true,
+        loopAdditionalSlides:1,
+		speed:700,
+		watchOverflow: 'true', // 스와이프가 한개일때 버튼 라인 비활성
+		scrollbar: {
+			el: ".swiper-scrollbar",
+			hide: false,
+			draggable: true,
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		breakpoints: {
+			768: {
+				slidesPerView: 'auto',
+				spaceBetween: 10,
+			},
+		},
+        on: {
+            transitionStart: function(){
+
+              var videos = document.querySelectorAll('video');
+
+              Array.prototype.forEach.call(videos, function(video){
+                video.pause();
+              });
+            },
+
+            transitionEnd: function(){
+
+              var activeIndex = this.activeIndex;
+              var activeSlide = document.getElementsByClassName('swiper-slide')[activeIndex];
+              var activeSlideVideo = activeSlide.getElementsByTagName('video')[0];
+              activeSlideVideo.play();
+
+            }
+
+          }
+	});    
+```
