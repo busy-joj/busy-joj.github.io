@@ -1,0 +1,12 @@
+---
+layout: post
+title: js - 자식 태그 외 텍스트만 변경해보자
+date: 2023-01-30 22:19:11 +0900
+category: Javascript
+---
+
+
+```javascript
+	$('#popup_close_check').parent().contents()[0].textContent = "TODAY ";
+	$('#popup_close_btn').html('CLOSE') ;
+```
