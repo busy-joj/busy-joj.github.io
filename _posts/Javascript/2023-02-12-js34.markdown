@@ -1,0 +1,54 @@
+---
+layout: post
+title: js - 자식 태그 외 텍스트만 변경해보자
+date: 2023-02-12 17:26:01 +0900
+category: Javascript
+---
+
+
+```javascript
+$(document).ready(function(){    
+    var link = document.location.href; //현재 페이지 url 를 가지고 옵니다.
+    if (link.match('basket')) {
+        // 체크박스 체크 여부 확인 함수
+        function  isChk(){
+            var chked = false;
+            var arrName = document.getElementsByName("basket_product_normal_type_normal");
+            var arrPrice = $('span.price').get();
+            var chkedPrice = [];
+            for(var i=0;i<arrName.length;i++){
+                if(arrName[i].checked == true){
+                    chked = true;
+                    chkedPrice.push(arrPrice[i].innerHTML)
+                    console.log(chkedPrice)
+                }
+            }
+            if(!chked){
+                $('.btn-wrap .order-all').show();
+                $('.btn-wrap .order-chk').hide();
+                console.log("선택X");
+                return false;
+            }else{
+                $('.btn-wrap .order-all').hide();
+                $('.btn-wrap .order-chk').show(); 
+                console.log("선택O",arrPrice);
+            }
+        }
+        
+        // 페이지 시작시 체크박스 체크 여부 확인
+        isChk()
+        
+        // 체크박스 체크시 
+        $('input[type="checkbox"]').each(function(i){
+            $(this).click(function(e){
+                isChk()
+               	var result = $(e.target)
+                //var txt = result.parentElement.nextElementSibling 
+                console.log(result)
+            })
+        })
+
+
+    }
+});
+```
