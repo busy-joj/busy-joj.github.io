@@ -9,46 +9,53 @@ category: Javascript
 ```javascript
 $(document).ready(function(){    
     var link = document.location.href; //현재 페이지 url 를 가지고 옵니다.
-    if (link.match('basket')) {
-        // 체크박스 체크 여부 확인 함수
-        function  isChk(){
-            var chked = false;
-            var arrName = document.getElementsByName("basket_product_normal_type_normal");
-            var arrPrice = $('span.price').get();
-            var chkedPrice = [];
-            for(var i=0;i<arrName.length;i++){
-                if(arrName[i].checked == true){
-                    chked = true;
-                    chkedPrice.push(arrPrice[i].innerHTML)
-                    console.log(chkedPrice)
-                }
-            }
-            if(!chked){
-                $('.btn-wrap .order-all').show();
-                $('.btn-wrap .order-chk').hide();
-                console.log("선택X");
-                return false;
-            }else{
-                $('.btn-wrap .order-all').hide();
-                $('.btn-wrap .order-chk').show(); 
-                console.log("선택O",arrPrice);
+
+    // 체크박스 체크 여부 확인 함수
+
+    function  isChk(){
+        var chked = false;
+        var arrName = document.getElementsByName("basket_product_normal_type_normal");
+        var arrPrice = $('#board-cart span.price').get();
+        var chkedPrice = [];
+        for(var i=0;i<arrName.length;i++){
+            if(arrName[i].checked == true){
+                chked = true;
+                chkedPrice.push(arrPrice[i].innerText)
             }
         }
-        
-        // 페이지 시작시 체크박스 체크 여부 확인
-        isChk()
-        
-        // 체크박스 체크시 
-        $('input[type="checkbox"]').each(function(i){
-            $(this).click(function(e){
-                isChk()
-               	var result = $(e.target)
-                //var txt = result.parentElement.nextElementSibling 
-                console.log(result)
-            })
-        })
+        if(!chked){
+            $('.btn-wrap .order-all').show();
+            $('.btn-wrap .order-chk').hide();
+            $('.total-wrap .default-price').show();
+            $('.total-wrap .fake-price').hide();
+            return false;
+        }else{
+            $('.btn-wrap .order-all').hide();
+            $('.btn-wrap .order-chk').show(); 
 
+            let sumsum = 0;
+            let toJoin = chkedPrice.map((item) => item.split(",").join(""));
+            toJoin.forEach( (item) => {
+                sumsum += parseInt(item);
+            });
 
+            let sumText = String(sumsum);
+            sumText = sumText.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $('.total-wrap .default-price').hide();
+            $('.total-wrap .fake-price').show().text(sumText);
+            console.log(arrPrice,chkedPrice,toJoin,sumsum,sumText)
+        }
     }
+
+    // 페이지 시작시 체크박스 체크 여부 확인
+    isChk()
+
+    // 체크박스 체크시 함수 실행
+    $('input[type="checkbox"]').each(function(i){
+        $(this).click(function(){
+            isChk()
+        })
+    })
+
 });
 ```
